@@ -1,0 +1,4 @@
+pygdbmi~=0.10.0.2
+pyserial~=3.5
+prompt_toolkit==3.0.30
+cmsis_svd~=0.4

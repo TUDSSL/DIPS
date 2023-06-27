@@ -1,0 +1,16 @@
+(gdb) backtrace full
+backtrace full
+#0  memcpy (dst0=0x10009c00 <z80_memory+15360>, src0=<optimized out>, len0=<optimized out>) at ../../../../../../newlib-4.3.0.20230120/newlib/libc/machine/arm/../../string/memcpy.c:59
+        dst = <optimized out>
+        src = 0x51016ede <error: Cannot access memory at address 0x51016ede>
+        save = 0x10009c00 <z80_memory+15360>
+#1  0x0001bfba in mpatch_write (high=268475903, low=268475392, mp_apply=0x51016e0c) at /home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/mpatch/mpatch.c:473
+        size = 512
+        dst = 0x10009c00 <z80_memory+15360> ""
+        offset = <optimized out>
+#2  mpatch_apply (mp_apply=0x51016e0c, low=268475392, high=268475903, applied=0x100188dc, write=false) at /home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/mpatch/mpatch.c:489
+        p_overlap = <optimized out>
+Backtrace stopped: previous frame identical to this frame (corrupt stack?)
+(gdb)
+
+

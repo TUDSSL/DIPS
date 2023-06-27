@@ -1,0 +1,42 @@
+EXEC = edb-rat
+
+OBJECTS = \
+    main.o \
+    tasks/blink.o \
+    tasks/naturalSum.o \
+    tasks/adctask.o \
+    checkpointing.o
+
+DEPS += \
+	libmsp \
+	libwispbase \
+
+# Relative from toolchain build dir (one down from this file's dir)
+SRC_ROOT = ../../src
+
+#include $(LIB_ROOT)/libmspbuiltins/bld/Makefile.target
+
+# Enable only one at a time for a test case sanity
+TEST_INTERRUPT = 1
+TEST_WATCHPOINTS = 0
+TEST_BREAKPOINTS = 1
+TEST_ASSERT = 0
+TEST_ENERGY_GUARDS = 0
+TEST_EIF_PRINTF = 1
+
+include ../Makefile.config
+
+export LIBEDB_BOARD_VERSION_MAJOR = 1
+export LIBEDB_BOARD_VERSION_MINOR = 1
+
+export LIBMSP_DCO_FREQ = 8000000
+
+CONFIG_EDB = 1
+include $(LIB_ROOT)/libedb/bld/Makefile.target
+include $(LIB_ROOT)/libmspbuiltins/bld/Makefile.target
+include $(LIB_ROOT)/libwispbase/bld/Makefile.target
+
+ifeq ($(TEST_EIF_PRINTF),1)
+CONFIG_PRINTF_LIB = libedb
+include $(MAKER_ROOT)/Makefile.console
+endif # TEST_EIF_PRINTF

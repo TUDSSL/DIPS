@@ -1,0 +1,22 @@
+#ifndef SRC_TARGET_MSP430_COMMON_H_
+#define SRC_TARGET_MSP430_COMMON_H_
+
+#include "target.h"
+
+// #define ACTIVATE_MAGIC_PATTERN
+#define DISABLE_JTAG_SIGNATURE_WRITE 1
+#define MAX_ENTRY_TRY 4
+
+#define FR4xx_LOCKREGISTER 0x160
+#define SAFE_FRAM_PC 0x0004
+
+#define FRAM_LOW 0xC400
+#define FRAM_HIGH 0xFFFF
+
+#define JTAG_SIGNATURE_LOW 0xFF80
+#define JTAG_SIGNATURE_HIGH 0xFF88
+
+#define CPUOFF              (0x0010u)
+#define DBGJTAGON           (0x0080u)
+
+#endif // SRC_TARGET_MSP430_COMMON_H_

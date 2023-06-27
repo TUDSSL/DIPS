@@ -1,0 +1,3 @@
+[submodule "ext/pyedb"]
+	path = ext/pyedb
+	url = https://github.com/CMUAbstract/pyedb

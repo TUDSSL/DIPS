@@ -1,0 +1,10 @@
+.pio
+.idea
+.vscode
+
+CMakeListsPrivate.txt
+CMakeCache*
+cmake-build-*/
+Makefile
+CMakeFiles/
+cmake_install.cmake

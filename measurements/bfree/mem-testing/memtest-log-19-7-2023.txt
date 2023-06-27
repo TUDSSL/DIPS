@@ -1,0 +1,1339 @@
+Square wave:
+voltage 2500mV
+Duty cycle 10%, period 8S
+Takeover 2500mV, Debug takeover enabled
+
+settings .json:
+  "memcheck": {
+     "regions": {
+      "bss1": [
+        "0x0000000020000400", "0x0000000020000670"
+      ],
+      "bss2": [
+        "0x00000000200008f0", "0x0000000020000950"
+      ],
+      "data": [
+        "0x0000000020000000", "0x0000000020000028"
+      ]
+    },
+    "checkpoint_function": "checkpoint.c:348",
+    "restore_function": "restore_registers",
+    "timeout": 300,
+    "only_checkpointing": true
+  },
+
+
+python main.py ~/git/Intermittent_software/BFree-core/ports/atmel-samd/build-metro_m0_express/firmware.elf
+Warning: 'set target-async', an alias for the command 'set mi-async', is deprecated.
+Use 'set mi-async'.
+
+(gdb) connect
+found port: ttyACM0
+tar ext /dev/ttyACM0
+Remote debugging using /dev/ttyACM0
+mon auto_scan
+Target voltage: 3.3V
+Available Targets:
+No. Att Driver
+ 1      Atmel SAMD21G18A (rev D) M0+
+attach 1
+Attaching to program: /home/jasper/git/Intermittent_software/BFree-core/ports/atmel-samd/build-metro_m0_express/firmware.elf, Remote target
+0x0000689c in common_hal_mcu_disable_interrupts () at common-hal/microcontroller/__init__.c:49
+49	    nesting_count++;
+^connected
+(gdb) dips_mem_check
+Starting memory automated testing procedure....
+
+Using checkpoint and restore functions from default configuration
+
+Add checkpoint and restore as arguments to change this
+
+set pagination off
+set print pretty
+mon interrupt_on_power_failure enable
+b checkpoint.c:348
+Breakpoint 1 at 0xbc74: file ../../lib/checkpoint/checkpoint.c, line 348.
+Note: automatically using hardware breakpoints for read-only addresses.
+[['&"b checkpoint.c:348\\n"', '~"Breakpoint 1 at 0xbc74: file ../../lib/checkpoint/checkpoint.c, line 348.\\n"', '=breakpoint-created,bkpt={number="1",type="breakpoint",disp="keep",enabled="y",addr="0x0000bc74",func="checkpoint_registers",file="../../lib/checkpoint/checkpoint.c",fullname="/home/jasper/git/Intermittent_software/BFree-core/lib/checkpoint/checkpoint.c",line="348",thread-groups=["i1"],times="0",original-location="checkpoint.c:348"}', '~"Note: automatically using hardware breakpoints for read-only addresses.\\n"', '^done', '(gdb) '], [{'type': 'log', 'message': None, 'payload': 'b checkpoint.c:348\n', 'stream': 'stdout'}, {'type': 'console', 'message': None, 'payload': 'Breakpoint 1 at 0xbc74: file ../../lib/checkpoint/checkpoint.c, line 348.\n', 'stream': 'stdout'}, {'type': 'notify', 'message': 'breakpoint-created', 'payload': {'bkpt': {'number': '1', 'type': 'breakpoint', 'disp': 'keep', 'enabled': 'y', 'addr': '0x0000bc74', 'func': 'checkpoint_registers', 'file': '../../lib/checkpoint/checkpoint.c', 'fullname': '/home/jasper/git/Intermittent_software/BFree-core/lib/checkpoint/checkpoint.c', 'line': '348', 'thread-groups': ['i1'], 'times': '0', 'original-location': 'checkpoint.c:348'}}, 'token': None, 'stream': 'stdout'}, {'type': 'console', 'message': None, 'payload': 'Note: automatically using hardware breakpoints for read-only addresses.\n', 'stream': 'stdout'}, {'type': 'result', 'message': 'done', 'payload': None, 'token': None, 'stream': 'stdout'}]]
+b restore_registers
+Breakpoint 2 at 0xe2fe: file ../../lib/checkpoint/checkpoint.c, line 357.
+[['&"b restore_registers\\n"', '~"Breakpoint 2 at 0xe2fe: file ../../lib/checkpoint/checkpoint.c, line 357.\\n"', '=breakpoint-created,bkpt={number="2",type="breakpoint",disp="keep",enabled="y",addr="0x0000e2fe",func="restore_registers",file="../../lib/checkpoint/checkpoint.c",fullname="/home/jasper/git/Intermittent_software/BFree-core/lib/checkpoint/checkpoint.c",line="357",thread-groups=["i1"],times="0",original-location="restore_registers"}', '^done', '(gdb) '], [{'type': 'log', 'message': None, 'payload': 'b restore_registers\n', 'stream': 'stdout'}, {'type': 'console', 'message': None, 'payload': 'Breakpoint 2 at 0xe2fe: file ../../lib/checkpoint/checkpoint.c, line 357.\n', 'stream': 'stdout'}, {'type': 'notify', 'message': 'breakpoint-created', 'payload': {'bkpt': {'number': '2', 'type': 'breakpoint', 'disp': 'keep', 'enabled': 'y', 'addr': '0x0000e2fe', 'func': 'restore_registers', 'file': '../../lib/checkpoint/checkpoint.c', 'fullname': '/home/jasper/git/Intermittent_software/BFree-core/lib/checkpoint/checkpoint.c', 'line': '357', 'thread-groups': ['i1'], 'times': '0', 'original-location': 'restore_registers'}}, 'token': None, 'stream': 'stdout'}, {'type': 'result', 'message': 'done', 'payload': None, 'token': None, 'stream': 'stdout'}]]
+~"Test memory check initialized"
+~"starting script now"
+2023-06-19 18:53:32.152898 checkpoint triggered 1
+
+2023-06-19 18:53:33.382564 checkpoint triggered 2
+
+2023-06-19 18:53:34.613062 checkpoint triggered 3
+
+2023-06-19 18:53:35.851646 checkpoint triggered 4
+
+2023-06-19 18:53:37.082231 checkpoint triggered 5
+
+2023-06-19 18:53:38.312620 checkpoint triggered 6
+
+2023-06-19 18:53:40.462213 checkpoint triggered 7
+
+2023-06-19 18:53:41.692942 checkpoint triggered 8
+
+2023-06-19 18:53:42.932434 checkpoint triggered 9
+
+2023-06-19 18:53:44.162953 checkpoint triggered 10
+
+2023-06-19 18:53:45.393192 checkpoint triggered 11
+
+2023-06-19 18:53:46.622577 checkpoint triggered 12
+
+2023-06-19 18:53:47.425498 restarted
+
+2023-06-19 18:53:54.510451 restarted
+
+2023-06-19 18:53:55.371992 restore triggered 1
+
+ Binary files 'after-cp11_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp11_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp11_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:53:56.611673 checkpoint triggered 13
+
+2023-06-19 18:53:57.842224 checkpoint triggered 14
+
+2023-06-19 18:53:59.071972 checkpoint triggered 15
+
+2023-06-19 18:54:00.311401 checkpoint triggered 16
+
+2023-06-19 18:54:07.889779 restarted
+
+2023-06-19 18:54:08.773077 restore triggered 2
+
+ Binary files 'after-cp15_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp15_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp15_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:54:10.002012 checkpoint triggered 17
+
+2023-06-19 18:54:12.152598 checkpoint triggered 18
+
+2023-06-19 18:54:13.382021 checkpoint triggered 19
+
+2023-06-19 18:54:20.188652 restarted
+
+2023-06-19 18:54:20.722603 checkpoint triggered 20
+
+2023-06-19 18:54:21.951549 checkpoint triggered 21
+
+2023-06-19 18:54:23.183131 checkpoint triggered 22
+
+2023-06-19 18:54:24.411903 checkpoint triggered 23
+
+2023-06-19 18:54:32.510112 restarted
+
+2023-06-19 18:54:33.382266 restore triggered 3
+
+ Binary files 'after-cp22_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp22_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp22_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:54:34.633047 checkpoint triggered 24
+
+2023-06-19 18:54:35.881985 checkpoint triggered 25
+
+2023-06-19 18:54:37.131725 checkpoint triggered 26
+
+2023-06-19 18:54:44.829280 restarted
+
+2023-06-19 18:54:45.702146 restore triggered 4
+
+ Binary files 'after-cp25_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp25_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp25_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:54:46.931198 checkpoint triggered 27
+
+2023-06-19 18:54:48.161220 checkpoint triggered 28
+
+2023-06-19 18:54:50.312222 checkpoint triggered 29
+
+2023-06-19 18:54:57.120601 restarted
+
+2023-06-19 18:54:57.653046 checkpoint triggered 30
+
+2023-06-19 18:54:58.881495 checkpoint triggered 31
+
+2023-06-19 18:55:00.111407 checkpoint triggered 32
+
+2023-06-19 18:55:01.341232 checkpoint triggered 33
+
+2023-06-19 18:55:02.572230 checkpoint triggered 34
+
+2023-06-19 18:55:10.380497 restarted
+
+2023-06-19 18:55:11.251451 restore triggered 5
+
+ Binary files 'after-cp33_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp33_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp33_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:55:12.481956 checkpoint triggered 35
+
+2023-06-19 18:55:13.711416 checkpoint triggered 36
+
+2023-06-19 18:55:14.962183 checkpoint triggered 37
+
+2023-06-19 18:55:22.759194 restarted
+
+2023-06-19 18:55:23.601095 restore triggered 6
+
+ Binary files 'after-cp36_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp36_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp36_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:55:24.831564 checkpoint triggered 38
+
+2023-06-19 18:55:26.062017 checkpoint triggered 39
+
+2023-06-19 18:55:33.870440 restarted
+
+2023-06-19 18:55:35.341740 checkpoint triggered 40
+
+2023-06-19 18:55:36.571384 checkpoint triggered 41
+
+2023-06-19 18:55:37.802146 checkpoint triggered 42
+
+2023-06-19 18:55:45.179075 restarted
+
+2023-06-19 18:55:46.051756 restore triggered 7
+
+ Binary files 'after-cp41_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp41_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp41_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:55:47.281514 checkpoint triggered 43
+
+2023-06-19 18:55:48.511828 checkpoint triggered 44
+
+2023-06-19 18:55:49.741951 checkpoint triggered 45
+
+2023-06-19 18:55:57.478733 restarted
+
+2023-06-19 18:55:58.370297 restore triggered 8
+
+ Binary files 'after-cp44_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp44_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp44_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:55:59.611483 checkpoint triggered 46
+
+2023-06-19 18:56:00.850568 checkpoint triggered 47
+
+2023-06-19 18:56:02.091613 checkpoint triggered 48
+
+2023-06-19 18:56:03.331528 checkpoint triggered 49
+
+2023-06-19 18:56:10.869073 restarted
+
+2023-06-19 18:56:11.711618 restore triggered 9
+
+ Binary files 'after-cp48_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp48_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp48_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:56:12.940963 checkpoint triggered 50
+
+2023-06-19 18:56:15.091141 checkpoint triggered 51
+
+2023-06-19 18:56:22.158679 restarted
+
+2023-06-19 18:56:23.070840 restore triggered 10
+
+ Binary files 'after-cp50_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp50_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp50_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:56:24.361558 checkpoint triggered 52
+
+2023-06-19 18:56:25.650945 checkpoint triggered 53
+
+2023-06-19 18:56:26.961125 checkpoint triggered 54
+
+2023-06-19 18:56:28.261174 checkpoint triggered 55
+
+2023-06-19 18:56:35.518200 restarted
+
+2023-06-19 18:56:36.409739 restore triggered 11
+
+ Binary files 'after-cp54_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp54_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp54_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:56:37.640547 checkpoint triggered 56
+
+2023-06-19 18:56:38.870154 checkpoint triggered 57
+
+2023-06-19 18:56:40.100499 checkpoint triggered 58
+
+2023-06-19 18:56:41.330808 checkpoint triggered 59
+
+2023-06-19 18:56:48.928455 restarted
+
+2023-06-19 18:56:49.781163 restore triggered 12
+
+ Binary files 'after-cp58_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp58_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp58_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:56:51.011490 checkpoint triggered 60
+
+2023-06-19 18:56:52.240561 checkpoint triggered 61
+
+2023-06-19 18:57:00.050767 restarted
+
+2023-06-19 18:57:01.490920 checkpoint triggered 62
+
+2023-06-19 18:57:02.719802 checkpoint triggered 63
+
+2023-06-19 18:57:03.930519 checkpoint triggered 64
+
+2023-06-19 18:57:11.348101 restarted
+
+2023-06-19 18:57:12.260395 restore triggered 13
+
+ Binary files 'after-cp63_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp63_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp63_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:57:13.551592 checkpoint triggered 65
+
+2023-06-19 18:57:14.839951 checkpoint triggered 66
+
+2023-06-19 18:57:16.130622 checkpoint triggered 67
+
+2023-06-19 18:57:17.420831 checkpoint triggered 68
+
+2023-06-19 18:57:24.717907 restarted
+
+2023-06-19 18:57:25.581054 restore triggered 14
+
+ Binary files 'after-cp67_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp67_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp67_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:57:26.810059 checkpoint triggered 69
+
+2023-06-19 18:57:28.039998 checkpoint triggered 70
+
+2023-06-19 18:57:29.279206 checkpoint triggered 71
+
+2023-06-19 18:57:37.057728 restarted
+
+2023-06-19 18:57:37.939990 restore triggered 15
+
+ Binary files 'after-cp70_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp70_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp70_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:57:39.170968 checkpoint triggered 72
+
+2023-06-19 18:57:41.320350 checkpoint triggered 73
+
+2023-06-19 18:57:42.570860 checkpoint triggered 74
+
+2023-06-19 18:57:49.378669 restarted
+
+2023-06-19 18:57:49.890632 checkpoint triggered 75
+
+2023-06-19 18:57:51.110729 checkpoint triggered 76
+
+2023-06-19 18:57:52.339429 checkpoint triggered 77
+
+2023-06-19 18:57:53.559645 checkpoint triggered 78
+
+2023-06-19 18:58:01.697596 restarted
+
+2023-06-19 18:58:02.560865 restore triggered 16
+
+ Binary files 'after-cp77_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp77_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp77_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:58:03.790722 checkpoint triggered 79
+
+2023-06-19 18:58:05.020444 checkpoint triggered 80
+
+2023-06-19 18:58:06.250227 checkpoint triggered 81
+
+2023-06-19 18:58:07.480187 checkpoint triggered 82
+
+2023-06-19 18:58:15.067440 restarted
+
+2023-06-19 18:58:15.929560 restore triggered 17
+
+ Binary files 'after-cp81_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp81_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp81_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:58:17.159577 checkpoint triggered 83
+
+2023-06-19 18:58:19.318811 checkpoint triggered 84
+
+2023-06-19 18:58:26.377443 restarted
+
+2023-06-19 18:58:27.279994 restore triggered 18
+
+ Binary files 'after-cp83_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp83_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp83_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:58:28.529203 checkpoint triggered 85
+
+2023-06-19 18:58:29.779930 checkpoint triggered 86
+
+2023-06-19 18:58:31.031476 checkpoint triggered 87
+
+2023-06-19 18:58:32.280373 checkpoint triggered 88
+
+2023-06-19 18:58:39.747131 restarted
+
+2023-06-19 18:58:40.619253 restore triggered 19
+
+ Binary files 'after-cp87_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp87_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp87_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:58:41.850223 checkpoint triggered 89
+
+2023-06-19 18:58:43.080572 checkpoint triggered 90
+
+2023-06-19 18:58:44.310291 checkpoint triggered 91
+
+2023-06-19 18:58:45.540936 checkpoint triggered 92
+
+2023-06-19 18:58:53.127683 restarted
+
+2023-06-19 18:58:53.969213 restore triggered 20
+
+ Binary files 'after-cp91_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp91_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp91_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:58:55.199124 checkpoint triggered 93
+
+2023-06-19 18:58:56.429613 checkpoint triggered 94
+
+2023-06-19 18:59:04.450878 restarted
+
+2023-06-19 18:59:05.919699 checkpoint triggered 95
+
+2023-06-19 18:59:07.149663 checkpoint triggered 96
+
+2023-06-19 18:59:08.380183 checkpoint triggered 97
+
+2023-06-19 18:59:15.756912 restarted
+
+2023-06-19 18:59:16.629625 restore triggered 21
+
+ Binary files 'after-cp96_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp96_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp96_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:59:17.869885 checkpoint triggered 98
+
+2023-06-19 18:59:19.110047 checkpoint triggered 99
+
+2023-06-19 18:59:20.349668 checkpoint triggered 100
+
+2023-06-19 18:59:28.086952 restarted
+
+2023-06-19 18:59:28.979750 restore triggered 22
+
+ Binary files 'after-cp99_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp99_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp99_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:59:30.278582 checkpoint triggered 101
+
+2023-06-19 18:59:31.578857 checkpoint triggered 102
+
+2023-06-19 18:59:32.869151 checkpoint triggered 103
+
+2023-06-19 18:59:40.416748 restarted
+
+2023-06-19 18:59:41.308416 restore triggered 23
+
+ Binary files 'after-cp102_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp102_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp102_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:59:42.559204 checkpoint triggered 104
+
+2023-06-19 18:59:43.809827 checkpoint triggered 105
+
+2023-06-19 18:59:45.978654 checkpoint triggered 106
+
+2023-06-19 18:59:52.756532 restarted
+
+2023-06-19 18:59:53.658858 restore triggered 24
+
+ Binary files 'after-cp105_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp105_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp105_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 18:59:54.908906 checkpoint triggered 107
+
+2023-06-19 18:59:56.169237 checkpoint triggered 108
+
+2023-06-19 18:59:57.419079 checkpoint triggered 109
+
+2023-06-19 18:59:58.679320 checkpoint triggered 110
+
+2023-06-19 19:00:06.146592 restarted
+
+2023-06-19 19:00:07.009657 restore triggered 25
+
+ Binary files 'after-cp109_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp109_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp109_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:00:08.260187 checkpoint triggered 111
+
+2023-06-19 19:00:09.510819 checkpoint triggered 112
+
+2023-06-19 19:00:10.758304 checkpoint triggered 113
+
+2023-06-19 19:00:18.457999 restarted
+
+2023-06-19 19:00:19.359256 restore triggered 26
+
+ Binary files 'after-cp112_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp112_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp112_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:00:20.618689 checkpoint triggered 114
+
+2023-06-19 19:00:21.879219 checkpoint triggered 115
+
+2023-06-19 19:00:23.138420 checkpoint triggered 116
+
+2023-06-19 19:00:32.812532 restarted
+
+2023-06-19 19:00:33.430484 restore triggered 27
+
+ Binary files 'after-cp115_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp115_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp115_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:00:35.638221 checkpoint triggered 117
+
+2023-06-19 19:00:36.441435 restarted
+
+2023-06-19 19:00:41.246225 restarted
+
+2023-06-19 19:00:42.138792 restore triggered 28
+
+ Binary files 'after-cp116_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp116_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp116_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:00:43.379185 checkpoint triggered 118
+
+2023-06-19 19:00:44.617835 checkpoint triggered 119
+
+2023-06-19 19:00:45.859021 checkpoint triggered 120
+
+2023-06-19 19:00:47.089763 checkpoint triggered 121
+
+2023-06-19 19:00:54.636232 restarted
+
+2023-06-19 19:00:55.498266 restore triggered 29
+
+ Binary files 'after-cp120_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp120_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp120_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:00:56.728678 checkpoint triggered 122
+
+2023-06-19 19:00:57.959220 checkpoint triggered 123
+
+2023-06-19 19:00:59.188959 checkpoint triggered 124
+
+2023-06-19 19:01:00.418890 checkpoint triggered 125
+
+2023-06-19 19:01:07.995854 restarted
+
+2023-06-19 19:01:08.878020 restore triggered 30
+
+ Binary files 'after-cp124_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp124_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp124_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:01:10.109994 checkpoint triggered 126
+
+2023-06-19 19:01:11.338348 checkpoint triggered 127
+
+2023-06-19 19:01:13.498123 checkpoint triggered 128
+
+2023-06-19 19:01:20.307189 restarted
+
+2023-06-19 19:01:21.178854 restore triggered 31
+
+ Binary files 'after-cp127_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp127_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp127_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:01:22.408651 checkpoint triggered 129
+
+2023-06-19 19:01:23.649143 checkpoint triggered 130
+
+2023-06-19 19:01:24.889481 checkpoint triggered 131
+
+2023-06-19 19:01:32.635857 restarted
+
+2023-06-19 19:01:33.509546 restore triggered 32
+
+ Binary files 'after-cp130_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp130_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp130_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:01:34.737556 checkpoint triggered 132
+
+2023-06-19 19:01:35.967784 checkpoint triggered 133
+
+2023-06-19 19:01:37.197668 checkpoint triggered 134
+
+2023-06-19 19:01:38.427606 checkpoint triggered 135
+
+2023-06-19 19:01:46.005478 restarted
+
+2023-06-19 19:01:46.878371 restore triggered 33
+
+ Binary files 'after-cp134_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp134_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp134_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:01:48.148005 checkpoint triggered 136
+
+2023-06-19 19:01:49.427392 checkpoint triggered 137
+
+2023-06-19 19:01:50.697508 checkpoint triggered 138
+
+2023-06-19 19:01:58.325470 restarted
+
+2023-06-19 19:01:59.187672 restore triggered 34
+
+ Binary files 'after-cp137_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp137_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp137_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:02:01.337526 checkpoint triggered 139
+
+2023-06-19 19:02:02.568182 checkpoint triggered 140
+
+2023-06-19 19:02:03.808292 checkpoint triggered 141
+
+2023-06-19 19:02:10.616204 restarted
+
+2023-06-19 19:02:11.488223 restore triggered 35
+
+ Binary files 'after-cp140_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp140_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp140_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:02:12.717963 checkpoint triggered 142
+
+2023-06-19 19:02:13.957479 checkpoint triggered 143
+
+2023-06-19 19:02:15.188131 checkpoint triggered 144
+
+2023-06-19 19:02:16.418372 checkpoint triggered 145
+
+2023-06-19 19:02:23.995155 restarted
+
+2023-06-19 19:02:24.896866 restore triggered 36
+
+ Binary files 'after-cp144_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp144_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp144_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:02:26.157796 checkpoint triggered 146
+
+2023-06-19 19:02:27.418513 checkpoint triggered 147
+
+2023-06-19 19:02:28.676898 checkpoint triggered 148
+
+2023-06-19 19:02:36.335001 restarted
+
+2023-06-19 19:02:37.217152 restore triggered 37
+
+ Binary files 'after-cp147_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp147_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp147_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:02:38.448050 checkpoint triggered 149
+
+2023-06-19 19:02:40.598059 checkpoint triggered 150
+
+2023-06-19 19:02:41.827735 checkpoint triggered 151
+
+2023-06-19 19:02:48.635504 restarted
+
+2023-06-19 19:02:49.507719 restore triggered 38
+
+ Binary files 'after-cp150_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp150_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp150_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:02:50.757126 checkpoint triggered 152
+
+2023-06-19 19:02:51.997711 checkpoint triggered 153
+
+2023-06-19 19:02:53.248680 checkpoint triggered 154
+
+2023-06-19 19:03:00.944598 restarted
+
+2023-06-19 19:03:01.858025 restore triggered 39
+
+ Binary files 'after-cp153_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp153_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp153_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:03:03.138165 checkpoint triggered 155
+
+2023-06-19 19:03:04.416919 checkpoint triggered 156
+
+2023-06-19 19:03:05.696744 checkpoint triggered 157
+
+2023-06-19 19:03:06.967826 checkpoint triggered 158
+
+2023-06-19 19:03:14.314774 restarted
+
+2023-06-19 19:03:15.217415 restore triggered 40
+
+ Binary files 'after-cp157_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp157_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp157_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:03:16.446938 checkpoint triggered 159
+
+2023-06-19 19:03:17.687196 checkpoint triggered 160
+
+2023-06-19 19:03:19.846144 checkpoint triggered 161
+
+2023-06-19 19:03:26.654839 restarted
+
+2023-06-19 19:03:27.527603 restore triggered 41
+
+ Binary files 'after-cp160_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp160_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp160_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:03:28.797106 checkpoint triggered 162
+
+2023-06-19 19:03:30.067842 checkpoint triggered 163
+
+2023-06-19 19:03:31.347025 checkpoint triggered 164
+
+2023-06-19 19:03:38.974788 restarted
+
+2023-06-19 19:03:39.817572 restore triggered 42
+
+ Binary files 'after-cp163_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp163_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp163_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:03:41.047199 checkpoint triggered 165
+
+2023-06-19 19:03:42.276966 checkpoint triggered 166
+
+2023-06-19 19:03:43.507587 checkpoint triggered 167
+
+2023-06-19 19:03:51.317202 restarted
+
+2023-06-19 19:03:52.185783 restore triggered 43
+
+ Binary files 'after-cp166_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp166_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp166_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:03:53.417643 checkpoint triggered 168
+
+2023-06-19 19:03:54.655786 checkpoint triggered 169
+
+2023-06-19 19:03:55.887021 checkpoint triggered 170
+
+2023-06-19 19:04:03.664793 restarted
+
+2023-06-19 19:04:04.528387 restore triggered 44
+
+ Binary files 'after-cp169_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp169_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp169_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:04:05.757470 checkpoint triggered 171
+
+2023-06-19 19:04:07.907613 checkpoint triggered 172
+
+2023-06-19 19:04:14.965833 restarted
+
+2023-06-19 19:04:15.857042 restore triggered 45
+
+ Binary files 'after-cp171_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp171_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp171_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:04:17.126708 checkpoint triggered 173
+
+2023-06-19 19:04:18.395831 checkpoint triggered 174
+
+2023-06-19 19:04:19.666897 checkpoint triggered 175
+
+2023-06-19 19:04:27.284940 restarted
+
+2023-06-19 19:04:28.167329 restore triggered 46
+
+ Binary files 'after-cp174_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp174_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp174_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:04:29.436190 checkpoint triggered 176
+
+2023-06-19 19:04:30.706365 checkpoint triggered 177
+
+2023-06-19 19:04:31.976923 checkpoint triggered 178
+
+2023-06-19 19:04:39.603991 restarted
+
+2023-06-19 19:04:40.487090 restore triggered 47
+
+ Binary files 'after-cp177_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp177_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp177_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:04:41.717623 checkpoint triggered 179
+
+2023-06-19 19:04:42.966299 checkpoint triggered 180
+
+2023-06-19 19:04:44.197204 checkpoint triggered 181
+
+2023-06-19 19:04:45.426468 checkpoint triggered 182
+
+2023-06-19 19:04:53.004010 restarted
+
+2023-06-19 19:04:53.846701 restore triggered 48
+
+ Binary files 'after-cp181_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp181_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp181_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:04:55.996907 checkpoint triggered 183
+
+2023-06-19 19:04:57.226808 checkpoint triggered 184
+
+2023-06-19 19:05:04.283883 restarted
+
+2023-06-19 19:05:05.196354 restore triggered 49
+
+ Binary files 'after-cp183_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp183_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp183_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:05:06.496432 checkpoint triggered 185
+
+2023-06-19 19:05:07.796208 checkpoint triggered 186
+
+2023-06-19 19:05:09.095575 checkpoint triggered 187
+
+2023-06-19 19:05:10.395880 checkpoint triggered 188
+
+2023-06-19 19:05:17.653663 restarted
+
+2023-06-19 19:05:18.546913 restore triggered 50
+
+ Binary files 'after-cp187_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp187_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp187_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:05:19.776428 checkpoint triggered 189
+
+2023-06-19 19:05:21.007127 checkpoint triggered 190
+
+2023-06-19 19:05:22.235863 checkpoint triggered 191
+
+2023-06-19 19:05:23.465446 checkpoint triggered 192
+
+2023-06-19 19:05:31.004327 restarted
+
+2023-06-19 19:05:31.876502 restore triggered 51
+
+ Binary files 'after-cp191_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp191_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp191_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:05:33.107144 checkpoint triggered 193
+
+2023-06-19 19:05:35.256946 checkpoint triggered 194
+
+2023-06-19 19:05:36.506300 checkpoint triggered 195
+
+2023-06-19 19:05:43.312703 restarted
+
+2023-06-19 19:05:44.215847 restore triggered 52
+
+ Binary files 'after-cp194_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp194_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp194_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:05:45.506924 checkpoint triggered 196
+
+2023-06-19 19:05:46.807369 checkpoint triggered 197
+
+2023-06-19 19:05:48.105581 checkpoint triggered 198
+
+2023-06-19 19:05:49.406266 checkpoint triggered 199
+
+2023-06-19 19:05:56.703915 restarted
+
+2023-06-19 19:05:57.555818 restore triggered 53
+
+ Binary files 'after-cp198_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp198_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp198_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:05:58.785597 checkpoint triggered 200
+
+2023-06-19 19:06:00.015704 checkpoint triggered 201
+
+2023-06-19 19:06:01.245731 checkpoint triggered 202
+
+2023-06-19 19:06:09.023397 restarted
+
+2023-06-19 19:06:09.895819 restore triggered 54
+
+ Binary files 'after-cp201_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp201_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp201_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:06:11.156603 checkpoint triggered 203
+
+2023-06-19 19:06:12.416470 checkpoint triggered 204
+
+2023-06-19 19:06:20.224885 restarted
+
+2023-06-19 19:06:21.105708 restore triggered 55
+
+ Binary files 'after-cp203_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp203_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp203_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:06:23.255567 checkpoint triggered 205
+
+2023-06-19 19:06:24.486068 checkpoint triggered 206
+
+2023-06-19 19:06:31.542932 restarted
+
+2023-06-19 19:06:32.415683 restore triggered 56
+
+ Binary files 'after-cp205_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp205_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp205_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:06:33.666471 checkpoint triggered 207
+
+2023-06-19 19:06:34.916402 checkpoint triggered 208
+
+2023-06-19 19:06:36.165837 checkpoint triggered 209
+
+2023-06-19 19:06:43.862773 restarted
+
+2023-06-19 19:06:44.766318 restore triggered 57
+
+ Binary files 'after-cp208_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp208_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp208_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:06:46.035497 checkpoint triggered 210
+
+2023-06-19 19:06:47.305537 checkpoint triggered 211
+
+2023-06-19 19:06:48.577403 checkpoint triggered 212
+
+2023-06-19 19:06:49.845907 checkpoint triggered 213
+
+2023-06-19 19:06:57.232767 restarted
+
+2023-06-19 19:06:58.085542 restore triggered 58
+
+ Binary files 'after-cp212_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp212_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp212_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:06:59.315635 checkpoint triggered 214
+
+2023-06-19 19:07:00.545528 checkpoint triggered 215
+
+2023-06-19 19:07:08.354697 restarted
+
+2023-06-19 19:07:09.256309 restore triggered 59
+
+ Binary files 'after-cp214_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp214_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp214_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:07:11.425843 checkpoint triggered 216
+
+2023-06-19 19:07:12.675467 checkpoint triggered 217
+
+2023-06-19 19:07:19.482830 restarted
+
+2023-06-19 19:07:20.394731 restore triggered 60
+
+ Binary files 'after-cp216_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp216_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp216_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:07:21.695137 checkpoint triggered 218
+
+2023-06-19 19:07:22.984751 checkpoint triggered 219
+
+2023-06-19 19:07:24.274608 checkpoint triggered 220
+
+2023-06-19 19:07:31.822339 restarted
+
+2023-06-19 19:07:32.715850 restore triggered 61
+
+ Binary files 'after-cp219_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp219_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp219_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:07:33.955430 checkpoint triggered 221
+
+2023-06-19 19:07:35.195325 checkpoint triggered 222
+
+2023-06-19 19:07:36.435125 checkpoint triggered 223
+
+2023-06-19 19:07:37.675609 checkpoint triggered 224
+
+2023-06-19 19:07:45.182284 restarted
+
+2023-06-19 19:07:46.075567 restore triggered 62
+
+ Binary files 'after-cp223_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp223_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp223_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:07:47.314957 checkpoint triggered 225
+
+2023-06-19 19:07:48.554226 checkpoint triggered 226
+
+2023-06-19 19:07:50.704838 checkpoint triggered 227
+
+2023-06-19 19:07:57.512706 restarted
+
+2023-06-19 19:07:58.404728 restore triggered 63
+
+ Binary files 'after-cp226_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp226_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp226_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:07:59.665234 checkpoint triggered 228
+
+2023-06-19 19:08:00.924810 checkpoint triggered 229
+
+2023-06-19 19:08:02.184092 checkpoint triggered 230
+
+2023-06-19 19:08:03.444376 checkpoint triggered 231
+
+2023-06-19 19:08:10.861960 restarted
+
+2023-06-19 19:08:11.775201 restore triggered 64
+
+ Binary files 'after-cp230_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp230_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp230_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:08:13.064694 checkpoint triggered 232
+
+2023-06-19 19:08:14.365268 checkpoint triggered 233
+
+2023-06-19 19:08:15.665652 checkpoint triggered 234
+
+2023-06-19 19:08:16.964966 checkpoint triggered 235
+
+2023-06-19 19:08:24.232198 restarted
+
+2023-06-19 19:08:25.134280 restore triggered 65
+
+ Binary files 'after-cp234_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp234_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp234_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:08:26.384167 checkpoint triggered 236
+
+2023-06-19 19:08:27.644424 checkpoint triggered 237
+
+2023-06-19 19:08:29.833048 checkpoint triggered 238
+
+2023-06-19 19:08:36.612004 restarted
+
+2023-06-19 19:08:37.464018 restore triggered 66
+
+ Binary files 'after-cp237_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp237_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp237_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:08:38.694769 checkpoint triggered 239
+
+2023-06-19 19:08:39.923526 checkpoint triggered 240
+
+2023-06-19 19:08:41.156087 checkpoint triggered 241
+
+2023-06-19 19:08:48.941561 restarted
+
+2023-06-19 19:08:49.813758 restore triggered 67
+
+ Binary files 'after-cp240_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp240_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp240_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:08:51.074617 checkpoint triggered 242
+
+2023-06-19 19:08:52.335680 checkpoint triggered 243
+
+2023-06-19 19:08:53.603103 checkpoint triggered 244
+
+2023-06-19 19:09:01.261543 restarted
+
+2023-06-19 19:09:02.163977 restore triggered 68
+
+ Binary files 'after-cp243_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp243_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp243_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:09:03.453620 checkpoint triggered 245
+
+2023-06-19 19:09:04.724521 checkpoint triggered 246
+
+2023-06-19 19:09:06.004166 checkpoint triggered 247
+
+2023-06-19 19:09:07.284065 checkpoint triggered 248
+
+2023-06-19 19:09:14.671457 restarted
+
+2023-06-19 19:09:15.533609 restore triggered 69
+
+ Binary files 'after-cp247_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp247_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp247_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:09:17.683178 checkpoint triggered 249
+
+2023-06-19 19:09:18.914877 checkpoint triggered 250
+
+2023-06-19 19:09:25.981366 restarted
+
+2023-06-19 19:09:26.853694 restore triggered 70
+
+ Binary files 'after-cp249_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp249_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp249_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:09:28.103440 checkpoint triggered 251
+
+2023-06-19 19:09:29.354794 checkpoint triggered 252
+
+2023-06-19 19:09:30.603587 checkpoint triggered 253
+
+2023-06-19 19:09:38.301060 restarted
+
+2023-06-19 19:09:39.193392 restore triggered 71
+
+ Binary files 'after-cp252_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp252_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp252_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:09:40.442495 checkpoint triggered 254
+
+2023-06-19 19:09:41.692533 checkpoint triggered 255
+
+2023-06-19 19:09:42.933740 checkpoint triggered 256
+
+2023-06-19 19:09:44.173181 checkpoint triggered 257
+
+2023-06-19 19:09:51.671120 restarted
+
+2023-06-19 19:09:52.544302 restore triggered 72
+
+ Binary files 'after-cp256_memory_dump_bss1.bin' and 'after-rp_memory_dump_bss1.bin' are identical!
+
+ Binary files 'after-cp256_memory_dump_bss2.bin' and 'after-rp_memory_dump_bss2.bin' are identical!
+
+ Binary files 'after-cp256_memory_dump_data.bin' and 'after-rp_memory_dump_data.bin' are identical!
+
+2023-06-19 19:09:53.783732 checkpoint triggered 258
+
+2023-06-19 19:09:55.022958 checkpoint triggered 259
+
+2023-06-19 19:10:02.832775 restarted
+
+2023-06-19 19:10:04.432672 checkpoint triggered 260
+
+2023-06-19 19:10:05.733630 checkpoint triggered 261
+
+2023-06-19 19:10:07.043832 checkpoint triggered 262
+
+^CQuit
+d 1
+Cannot execute this command while the target is running.
+Use the "interrupt" command to stop the target
+and then try again.
+d 2
+Cannot execute this command while the target is running.
+Use the "interrupt" command to stop the target
+and then try again.
+mon interrupt_on_power_failure disable
+Cannot execute this command while the target is running.
+Use the "interrupt" command to stop the target
+and then try again.
+2023-06-19 19:10:07.847119 Manually exited memcheck procedure
+

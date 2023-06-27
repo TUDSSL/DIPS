@@ -1,0 +1,2316 @@
+Square wave:
+voltage 4100mV
+Duty cycle 30%, period 6S
+Takeover 3000mV, Debug takeover enabled
+
+settings .json:
+  "peripheral": {
+    "chip": "/home/jasper/git/Intermittent_software/int-debugger-console/achitectures/apollo3.svd",
+    "config_registers": [
+      "ADC_CFG",
+      "MSPI_CFG",
+      "IOM1_MSPICFG",
+      "GPIO_CFGA",
+      "GPIO_CFGB",
+      "GPIO_CFGC",
+      "GPIO_CFGD",
+      "GPIO_CFGE",
+      "GPIO_CFGF",
+      "GPIO_CFGG"
+    ],
+    "checkpoint_function": "checkpoint.c:33",
+    "restore_function": "checkpoint_registers.c:19"
+  },
+
+python main.py emulator.elf                                                                            ST 1   msp430-support 
+(gdb) connect
+found port: ttyACM1
+tar ext /dev/ttyACM1
+Remote debugging using /dev/ttyACM1
+mon auto_scan
+Target voltage: 3.0V
+Available Targets:
+No. Att Driver
+ 1      Ambiq Apollo 3 M4
+attach 1
+Attaching to program: /home/jasper/git/Intermittent_software/int-debugger-console/emulator.elf, Remote target
+memcpy (dst0=0x10006c00 <z80_memory+3072>, src0=<optimized out>, len0=<optimized out>) at ../../../../../../newlib-4.3.0.20230120/newlib/libc/machine/arm/../../string/memcpy.c:59
+59	../../../../../../newlib-4.3.0.20230120/newlib/libc/machine/arm/../../string/memcpy.c: No such file or directory.
+^connected
+(gdb) dips_peripheral_check
+Starting peripheral automated testing procedure....
+
+Using checkpoint and restore functions from default configuration
+
+Add checkpoint and restore as arguments to change this
+
+set pagination off
+set print pretty
+mon interrupt_on_power_failure enable
+SVD file loaded!
+Peripheral regions set!
+{'ADC_CFG': [1342242816, 1342242847], 'GPIO_CFGA': [1073807424, 1073807455], 'GPIO_CFGB': [1073807428, 1073807459], 'GPIO_CFGC': [1073807432, 1073807463], 'GPIO_CFGD': [1073807436, 1073807467], 'GPIO_CFGE': [1073807440, 1073807471], 'GPIO_CFGF': [1073807444, 1073807475], 'GPIO_CFGG': [1073807448, 1073807479], 'IOM1_MSPICFG': [1342198528, 1342198559], 'MSPI_CFG': [1342259204, 1342259235]}
+b checkpoint.c:33
+Breakpoint 1 at 0x1bd84: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c, line 33.
+Note: automatically using hardware breakpoints for read-only addresses.
+[['&"b checkpoint.c:33\\n"', '~"Breakpoint 1 at 0x1bd84: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c, line 33.\\n"', '=breakpoint-created,bkpt={number="1",type="breakpoint",disp="keep",enabled="y",addr="0x0001bd84",func="checkpoint_commit",file="/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c",fullname="/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c",line="33",thread-groups=["i1"],times="0",original-location="checkpoint.c:33"}', '~"Note: automatically using hardware breakpoints for read-only addresses.\\n"', '^done', '(gdb) '], [{'type': 'log', 'message': None, 'payload': 'b checkpoint.c:33\n', 'stream': 'stdout'}, {'type': 'console', 'message': None, 'payload': 'Breakpoint 1 at 0x1bd84: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c, line 33.\n', 'stream': 'stdout'}, {'type': 'notify', 'message': 'breakpoint-created', 'payload': {'bkpt': {'number': '1', 'type': 'breakpoint', 'disp': 'keep', 'enabled': 'y', 'addr': '0x0001bd84', 'func': 'checkpoint_commit', 'file': '/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c', 'fullname': '/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c', 'line': '33', 'thread-groups': ['i1'], 'times': '0', 'original-location': 'checkpoint.c:33'}}, 'token': None, 'stream': 'stdout'}, {'type': 'console', 'message': None, 'payload': 'Note: automatically using hardware breakpoints for read-only addresses.\n', 'stream': 'stdout'}, {'type': 'result', 'message': 'done', 'payload': None, 'token': None, 'stream': 'stdout'}]]
+b checkpoint_registers.c:19
+Breakpoint 2 at 0x1bc4e: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/arch/arm/reg/checkpoint_registers.c, line 19.
+[['&"b checkpoint_registers.c:19\\n"', '~"Breakpoint 2 at 0x1bc4e: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/arch/arm/reg/checkpoint_registers.c, line 19.\\n"', '=breakpoint-created,bkpt={number="2",type="breakpoint",disp="keep",enabled="y",addr="0x0001bc4e",func="restore_registers",file="/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/arch/arm/reg/checkpoint_registers.c",fullname="/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/arch/arm/reg/checkpoint_registers.c",line="19",thread-groups=["i1"],times="0",original-location="checkpoint_registers.c:19"}', '^done', '(gdb) '], [{'type': 'log', 'message': None, 'payload': 'b checkpoint_registers.c:19\n', 'stream': 'stdout'}, {'type': 'console', 'message': None, 'payload': 'Breakpoint 2 at 0x1bc4e: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/arch/arm/reg/checkpoint_registers.c, line 19.\n', 'stream': 'stdout'}, {'type': 'notify', 'message': 'breakpoint-created', 'payload': {'bkpt': {'number': '2', 'type': 'breakpoint', 'disp': 'keep', 'enabled': 'y', 'addr': '0x0001bc4e', 'func': 'restore_registers', 'file': '/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/arch/arm/reg/checkpoint_registers.c', 'fullname': '/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/arch/arm/reg/checkpoint_registers.c', 'line': '19', 'thread-groups': ['i1'], 'times': '0', 'original-location': 'checkpoint_registers.c:19'}}, 'token': None, 'stream': 'stdout'}, {'type': 'result', 'message': 'done', 'payload': None, 'token': None, 'stream': 'stdout'}]]
+~"Test peripheral check initialized"
+~"starting script now"
+2023-05-15 17:41:14.473313 restore triggered 1
+
+2023-05-15 17:41:19.677573 checkpoint triggered 1
+
+2023-05-15 17:41:26.123816 restore triggered 2
+
+ Binary files 'after-cp0_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:41:34.804264 restore triggered 3
+
+ Binary files 'after-cp0_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp0_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:41:39.503427 checkpoint triggered 2
+
+2023-05-15 17:41:45.952933 restore triggered 4
+
+ Binary files 'after-cp1_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp1_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp1_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp1_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp1_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp1_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp1_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp1_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp1_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp1_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:41:50.643915 checkpoint triggered 3
+
+2023-05-15 17:41:57.113245 restore triggered 5
+
+ Binary files 'after-cp2_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp2_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp2_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp2_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp2_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp2_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp2_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp2_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp2_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp2_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:42:01.772436 checkpoint triggered 4
+
+2023-05-15 17:42:08.233894 restore triggered 6
+
+ Binary files 'after-cp3_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:42:16.932469 restore triggered 7
+
+ Binary files 'after-cp3_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp3_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:42:21.652654 checkpoint triggered 5
+
+2023-05-15 17:42:28.052954 restore triggered 8
+
+ Binary files 'after-cp4_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp4_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp4_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp4_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp4_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp4_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp4_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp4_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp4_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp4_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:42:32.762807 checkpoint triggered 6
+
+2023-05-15 17:42:39.242938 restore triggered 9
+
+ Binary files 'after-cp5_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp5_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp5_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp5_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp5_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp5_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp5_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp5_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp5_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp5_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:42:43.893696 checkpoint triggered 7
+
+2023-05-15 17:42:50.353397 restore triggered 10
+
+ Binary files 'after-cp6_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:42:59.072573 restore triggered 11
+
+ Binary files 'after-cp6_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp6_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:43:03.731803 checkpoint triggered 8
+
+2023-05-15 17:43:10.172627 restore triggered 12
+
+ Binary files 'after-cp7_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp7_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp7_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp7_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp7_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp7_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp7_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp7_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp7_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp7_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:43:14.882671 checkpoint triggered 9
+
+2023-05-15 17:43:21.362830 restore triggered 13
+
+ Binary files 'after-cp8_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp8_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp8_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp8_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp8_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp8_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp8_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp8_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp8_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp8_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:43:26.022947 checkpoint triggered 10
+
+2023-05-15 17:43:32.501679 restore triggered 14
+
+ Binary files 'after-cp9_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp9_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp9_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp9_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp9_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp9_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp9_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp9_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp9_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp9_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:43:37.162097 checkpoint triggered 11
+
+2023-05-15 17:43:43.612671 restore triggered 15
+
+ Binary files 'after-cp10_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:43:52.321882 restore triggered 16
+
+ Binary files 'after-cp10_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:44:01.022232 restore triggered 17
+
+ Binary files 'after-cp10_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp10_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:44:05.671252 checkpoint triggered 12
+
+2023-05-15 17:44:12.112086 restore triggered 18
+
+ Binary files 'after-cp11_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp11_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp11_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp11_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp11_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp11_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp11_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp11_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp11_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp11_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:44:16.821823 checkpoint triggered 13
+
+2023-05-15 17:44:23.271988 restore triggered 19
+
+ Binary files 'after-cp12_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:44:31.992254 restore triggered 20
+
+ Binary files 'after-cp12_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp12_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:44:36.640956 checkpoint triggered 14
+
+2023-05-15 17:44:43.122143 restore triggered 21
+
+ Binary files 'after-cp13_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp13_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp13_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp13_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp13_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp13_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp13_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp13_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp13_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp13_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:44:47.770792 checkpoint triggered 15
+
+2023-05-15 17:44:54.252356 restore triggered 22
+
+ Binary files 'after-cp14_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp14_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp14_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp14_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp14_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp14_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp14_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp14_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp14_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp14_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:44:58.911092 checkpoint triggered 16
+
+2023-05-15 17:45:05.391598 restore triggered 23
+
+ Binary files 'after-cp15_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:45:14.071683 restore triggered 24
+
+ Binary files 'after-cp15_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp15_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:45:18.771692 checkpoint triggered 17
+
+2023-05-15 17:45:25.221244 restore triggered 25
+
+ Binary files 'after-cp16_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:45:33.940541 restore triggered 26
+
+ Binary files 'after-cp16_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:45:42.629643 restore triggered 27
+
+ Binary files 'after-cp16_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:45:51.330674 restore triggered 28
+
+ Binary files 'after-cp16_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:46:00.031553 restore triggered 29
+
+ Binary files 'after-cp16_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp16_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:46:04.730812 checkpoint triggered 18
+
+2023-05-15 17:46:11.180897 restore triggered 30
+
+ Binary files 'after-cp17_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp17_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp17_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp17_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp17_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp17_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp17_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp17_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp17_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp17_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:46:15.830753 checkpoint triggered 19
+
+2023-05-15 17:46:22.309620 restore triggered 31
+
+ Binary files 'after-cp18_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp18_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp18_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp18_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp18_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp18_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp18_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp18_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp18_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp18_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:46:26.970610 checkpoint triggered 20
+
+2023-05-15 17:46:33.419827 restore triggered 32
+
+ Binary files 'after-cp19_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:46:42.149947 restore triggered 33
+
+ Binary files 'after-cp19_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp19_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:46:46.799752 checkpoint triggered 21
+
+2023-05-15 17:46:53.250134 restore triggered 34
+
+ Binary files 'after-cp20_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:47:01.970485 restore triggered 35
+
+ Binary files 'after-cp20_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp20_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:47:06.619621 checkpoint triggered 22
+
+2023-05-15 17:47:13.078657 restore triggered 36
+
+ Binary files 'after-cp21_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:47:21.760058 restore triggered 37
+
+ Binary files 'after-cp21_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:47:30.499502 restore triggered 38
+
+ Binary files 'after-cp21_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp21_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:47:35.099636 checkpoint triggered 23
+
+2023-05-15 17:47:41.588668 restore triggered 39
+
+ Binary files 'after-cp22_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:47:50.289150 restore triggered 40
+
+ Binary files 'after-cp22_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:47:59.009734 restore triggered 41
+
+ Binary files 'after-cp22_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp22_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:48:03.659979 checkpoint triggered 24
+
+2023-05-15 17:48:10.119168 restore triggered 42
+
+ Binary files 'after-cp23_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:48:18.798863 restore triggered 43
+
+ Binary files 'after-cp23_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:48:27.529191 restore triggered 44
+
+ Binary files 'after-cp23_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp23_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:48:32.188435 checkpoint triggered 25
+
+2023-05-15 17:48:38.648424 restore triggered 45
+
+ Binary files 'after-cp24_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp24_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp24_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp24_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp24_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp24_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp24_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp24_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp24_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp24_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:48:43.309313 checkpoint triggered 26
+
+2023-05-15 17:48:49.767436 restore triggered 46
+
+ Binary files 'after-cp25_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:48:58.488978 restore triggered 47
+
+ Binary files 'after-cp25_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp25_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:49:03.148428 checkpoint triggered 27
+
+2023-05-15 17:49:09.598052 restore triggered 48
+
+ Binary files 'after-cp26_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:49:18.307996 restore triggered 49
+
+ Binary files 'after-cp26_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp26_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:49:22.957927 checkpoint triggered 28
+
+2023-05-15 17:49:29.407475 restore triggered 50
+
+ Binary files 'after-cp27_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:49:38.137565 restore triggered 51
+
+ Binary files 'after-cp27_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp27_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:49:42.788996 checkpoint triggered 29
+
+2023-05-15 17:49:49.247458 restore triggered 52
+
+ Binary files 'after-cp28_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:49:57.946919 restore triggered 53
+
+ Binary files 'after-cp28_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:50:06.668052 restore triggered 54
+
+ Binary files 'after-cp28_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp28_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:50:11.318169 checkpoint triggered 30
+
+2023-05-15 17:50:17.827784 restore triggered 55
+
+ Binary files 'after-cp29_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp29_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp29_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp29_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp29_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp29_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp29_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp29_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp29_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp29_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:50:22.468043 checkpoint triggered 31
+
+2023-05-15 17:50:28.957536 restore triggered 56
+
+ Binary files 'after-cp30_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp30_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp30_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp30_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp30_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp30_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp30_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp30_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp30_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp30_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:50:33.607070 checkpoint triggered 32
+
+2023-05-15 17:50:40.108140 restore triggered 57
+
+ Binary files 'after-cp31_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp31_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp31_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp31_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp31_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp31_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp31_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp31_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp31_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp31_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:50:44.768107 checkpoint triggered 33
+
+2023-05-15 17:50:51.226943 restore triggered 58
+
+ Binary files 'after-cp32_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp32_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp32_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp32_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp32_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp32_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp32_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp32_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp32_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp32_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:50:55.877565 checkpoint triggered 34
+
+2023-05-15 17:51:02.417330 restore triggered 59
+
+ Binary files 'after-cp33_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp33_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp33_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp33_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp33_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp33_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp33_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp33_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp33_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp33_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:51:07.057529 checkpoint triggered 35
+
+2023-05-15 17:51:13.516137 restore triggered 60
+
+ Binary files 'after-cp34_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp34_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp34_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp34_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp34_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp34_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp34_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp34_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp34_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp34_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:51:18.197461 checkpoint triggered 36
+
+2023-05-15 17:51:24.656020 restore triggered 61
+
+ Binary files 'after-cp35_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:51:33.366899 restore triggered 62
+
+ Binary files 'after-cp35_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:51:42.067778 restore triggered 63
+
+ Binary files 'after-cp35_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp35_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:51:46.706093 checkpoint triggered 37
+
+2023-05-15 17:51:53.166964 restore triggered 64
+
+ Binary files 'after-cp36_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp36_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp36_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp36_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp36_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp36_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp36_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp36_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp36_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp36_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:51:57.857188 checkpoint triggered 38
+
+2023-05-15 17:52:04.306963 restore triggered 65
+
+ Binary files 'after-cp37_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:52:12.986991 restore triggered 66
+
+ Binary files 'after-cp37_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp37_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:52:17.676556 checkpoint triggered 39
+
+2023-05-15 17:52:24.125799 restore triggered 67
+
+ Binary files 'after-cp38_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:52:32.845935 restore triggered 68
+
+ Binary files 'after-cp38_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:52:41.546846 restore triggered 69
+
+ Binary files 'after-cp38_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp38_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:52:46.186820 checkpoint triggered 40
+
+2023-05-15 17:52:52.655851 restore triggered 70
+
+ Binary files 'after-cp39_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:53:01.386136 restore triggered 71
+
+ Binary files 'after-cp39_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp39_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:53:06.025782 checkpoint triggered 41
+
+2023-05-15 17:53:12.486199 restore triggered 72
+
+ Binary files 'after-cp40_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp40_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp40_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp40_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp40_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp40_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp40_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp40_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp40_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp40_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:53:17.126386 checkpoint triggered 42
+
+2023-05-15 17:53:23.665371 restore triggered 73
+
+ Binary files 'after-cp41_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp41_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp41_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp41_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp41_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp41_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp41_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp41_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp41_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp41_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:53:28.305399 checkpoint triggered 43
+
+2023-05-15 17:53:34.795837 restore triggered 74
+
+ Binary files 'after-cp42_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp42_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp42_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp42_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp42_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp42_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp42_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp42_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp42_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp42_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:53:39.486107 checkpoint triggered 44
+
+2023-05-15 17:53:45.935775 restore triggered 75
+
+ Binary files 'after-cp43_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:53:54.655207 restore triggered 76
+
+ Binary files 'after-cp43_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp43_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:53:59.295569 checkpoint triggered 45
+
+2023-05-15 17:54:05.755976 restore triggered 77
+
+ Binary files 'after-cp44_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp44_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp44_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp44_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp44_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp44_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp44_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp44_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp44_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp44_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:54:10.445143 checkpoint triggered 46
+
+2023-05-15 17:54:16.944993 restore triggered 78
+
+ Binary files 'after-cp45_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:54:25.655764 restore triggered 79
+
+ Binary files 'after-cp45_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp45_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:54:30.295203 checkpoint triggered 47
+
+2023-05-15 17:54:36.755768 restore triggered 80
+
+ Binary files 'after-cp46_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:54:45.485418 restore triggered 81
+
+ Binary files 'after-cp46_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp46_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:54:50.144191 checkpoint triggered 48
+
+2023-05-15 17:54:56.644233 restore triggered 82
+
+ Binary files 'after-cp47_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp47_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp47_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp47_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp47_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp47_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp47_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp47_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp47_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp47_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:55:01.283978 checkpoint triggered 49
+
+2023-05-15 17:55:07.775086 restore triggered 83
+
+ Binary files 'after-cp48_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp48_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp48_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp48_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp48_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp48_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp48_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp48_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp48_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp48_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:55:12.424635 checkpoint triggered 50
+
+2023-05-15 17:55:18.904776 restore triggered 84
+
+ Binary files 'after-cp49_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp49_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp49_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp49_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp49_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp49_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp49_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp49_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp49_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp49_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:55:23.565725 checkpoint triggered 51
+
+2023-05-15 17:55:30.045198 restore triggered 85
+
+ Binary files 'after-cp50_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp50_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp50_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp50_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp50_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp50_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp50_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp50_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp50_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp50_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:55:34.695196 checkpoint triggered 52
+
+2023-05-15 17:55:41.224559 restore triggered 86
+
+ Binary files 'after-cp51_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp51_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp51_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp51_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp51_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp51_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp51_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp51_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp51_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp51_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:55:45.873917 checkpoint triggered 53
+
+2023-05-15 17:55:52.345164 restore triggered 87
+
+ Binary files 'after-cp52_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:56:01.083431 restore triggered 88
+
+ Binary files 'after-cp52_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:56:09.784635 restore triggered 89
+
+ Binary files 'after-cp52_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp52_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:56:14.384512 checkpoint triggered 54
+
+2023-05-15 17:56:20.893067 restore triggered 90
+
+ Binary files 'after-cp53_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp53_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp53_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp53_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp53_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp53_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp53_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp53_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp53_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp53_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:56:25.533690 checkpoint triggered 55
+
+2023-05-15 17:56:32.012788 restore triggered 91
+
+ Binary files 'after-cp54_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp54_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp54_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp54_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp54_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp54_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp54_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp54_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp54_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp54_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:56:36.712736 checkpoint triggered 56
+
+2023-05-15 17:56:43.183825 restore triggered 92
+
+ Binary files 'after-cp55_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp55_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp55_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp55_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp55_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp55_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp55_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp55_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp55_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp55_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:56:47.833843 checkpoint triggered 57
+
+2023-05-15 17:56:54.304113 restore triggered 93
+
+ Binary files 'after-cp56_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp56_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp56_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp56_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp56_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp56_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp56_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp56_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp56_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp56_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:56:58.972641 checkpoint triggered 58
+
+2023-05-15 17:57:05.442884 restore triggered 94
+
+ Binary files 'after-cp57_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp57_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp57_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp57_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp57_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp57_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp57_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp57_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp57_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp57_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:57:10.162312 checkpoint triggered 59
+
+2023-05-15 17:57:16.644149 restore triggered 95
+
+ Binary files 'after-cp58_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp58_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp58_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp58_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp58_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp58_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp58_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp58_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp58_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp58_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:57:21.294013 checkpoint triggered 60
+
+2023-05-15 17:57:27.763105 restore triggered 96
+
+ Binary files 'after-cp59_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp59_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp59_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp59_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp59_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp59_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp59_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp59_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp59_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp59_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:57:32.422081 checkpoint triggered 61
+
+2023-05-15 17:57:38.942889 restore triggered 97
+
+ Binary files 'after-cp60_peripheral_dump_ADC_CFG.bin' and 'after-rp_peripheral_dump_ADC_CFG.bin' are identical!
+
+ Binary files 'after-cp60_peripheral_dump_GPIO_CFGA.bin' and 'after-rp_peripheral_dump_GPIO_CFGA.bin' are identical!
+
+ Binary files 'after-cp60_peripheral_dump_GPIO_CFGB.bin' and 'after-rp_peripheral_dump_GPIO_CFGB.bin' are identical!
+
+ Binary files 'after-cp60_peripheral_dump_GPIO_CFGC.bin' and 'after-rp_peripheral_dump_GPIO_CFGC.bin' are identical!
+
+ Binary files 'after-cp60_peripheral_dump_GPIO_CFGD.bin' and 'after-rp_peripheral_dump_GPIO_CFGD.bin' are identical!
+
+ Binary files 'after-cp60_peripheral_dump_GPIO_CFGE.bin' and 'after-rp_peripheral_dump_GPIO_CFGE.bin' are identical!
+
+ Binary files 'after-cp60_peripheral_dump_GPIO_CFGF.bin' and 'after-rp_peripheral_dump_GPIO_CFGF.bin' are identical!
+
+ Binary files 'after-cp60_peripheral_dump_GPIO_CFGG.bin' and 'after-rp_peripheral_dump_GPIO_CFGG.bin' are identical!
+
+ Binary files 'after-cp60_peripheral_dump_IOM1_MSPICFG.bin' and 'after-rp_peripheral_dump_IOM1_MSPICFG.bin' are identical!
+
+ Binary files 'after-cp60_peripheral_dump_MSPI_CFG.bin' and 'after-rp_peripheral_dump_MSPI_CFG.bin' are identical!
+
+2023-05-15 17:57:43.603384 checkpoint triggered 62
+
+^CQuit
+d 2
+Cannot execute this command while the target is running.
+Use the "interrupt" command to stop the target
+and then try again.
+d 1
+Cannot execute this command while the target is running.
+Use the "interrupt" command to stop the target
+and then try again.
+mon interrupt_on_power_failure disable
+Cannot execute this command while the target is running.
+Use the "interrupt" command to stop the target
+and then try again.
+2023-05-15 17:57:46.812756 Manually exited peripheralcheck procedure
+
+(gdb)
+

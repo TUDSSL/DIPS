@@ -1,0 +1,17 @@
+.config/
+.lauches/
+.settings/
+.idea/
+.project
+.cproject
+/config/stm32f373.svd
+cmake-build-debug/
+CMakeFiles/
+/build/
+bin/
+/Debug/
+.vscode/
+apps/hw-test/cmake-build-debug
+apps/hw-test/nanopb/generator
+*.pb.c
+*.pb.h

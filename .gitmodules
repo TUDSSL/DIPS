@@ -1,0 +1,21 @@
+[submodule "int-debugger-emulator-host/interface/int-debugger-interface"]
+	path = int-debugger-emulator-host/interface/int-debugger-interface
+	url = https://github.com/TUDSSL/int-debugger-interface.git
+	branch = master
+[submodule "int-debugger-emulator-host/lib/HighFive"]
+	path = int-debugger-emulator-host/lib/HighFive
+	url = https://github.com/BlueBrain/HighFive
+        branch = master	
+[submodule "int-debugger-emulator/interface/int-debugger-interface"]
+	path = int-debugger-emulator/interface/int-debugger-interface
+	url = https://github.com/TUDSSL/int-debugger-interface.git
+	branch = master
+[submodule "int-debugger-emulator/third-party/nanopb"]
+	path = int-debugger-emulator/third-party/nanopb
+	url = https://github.com/nanopb/nanopb.git
+[submodule "measurements/bfree/software/uf2-samdx1-dips"]
+	path = measurements/bfree/software/uf2-samdx1-dips
+	url = https://github.com/TUDSSL/uf2-samdx1-dips.git
+[submodule "measurements/bfree/software/BFree-core-dips"]
+	path = measurements/bfree/software/BFree-core-dips
+	url = https://github.com/TUDSSL/BFree-core-dips.git

@@ -1,0 +1,54 @@
+{
+  "memcheck": {
+     "regions": {
+      "bss": [
+        "0x0000000010014590", "0x000000001001851c"
+      ],
+      "data": [
+        "0x0000000010002b50", "0x0000000010002b60"
+      ]
+    },
+    "checkpoint_function": "checkpoint.c:33",
+    "restore_function": "restore_emulator",
+    "timeout": 300,
+    "only_checkpointing": true
+  },
+  "peripheral": {
+    "chip": "/home/jasper/git/Intermittent_software/int-debugger-console/achitectures/apollo3.svd",
+    "config_registers": [
+      "ADC_CFG",
+      "MSPI_CFG",
+      "IOM1_MSPICFG",
+      "GPIO_CFGA",
+      "GPIO_CFGB",
+      "GPIO_CFGC",
+      "GPIO_CFGD",
+      "GPIO_CFGE",
+      "GPIO_CFGF",
+      "GPIO_CFGG"
+    ],
+    "checkpoint_function": "checkpoint.c:33",
+    "restore_function": "checkpoint_registers.c:19"
+  },
+  "forwardprogress": {
+    "regions": {
+      "isr_manager_thread": ["0x004400", "0x004E10"],
+      "scheduler_threads":  ["0x004E10", "0x005619"],
+      "main_inited":        ["0x005619", "0x00561A"],
+      "thread_1_bits":      ["0x00561A", "0x00571B"],
+      "isr_manager_status": ["0x00571B", "0x00561C"],
+      "thread_1_status":    ["0x00561C", "0x00574c"],
+      "scheduler_thread":   ["0x00574c", "0x005751"],
+      "clock":              ["0x005751", "0x005756"]
+    },
+    "checkpoint_function": "/home/mark/Downloads/InK-master/Kernel/scheduler/thread.c:92",
+    "restore_function": "/home/mark/Downloads/InK-master/Kernel/scheduler/thread.c:63",
+    "timeout": 20,
+    "maximum_task_duration": 30,
+    "minimum_test_duration": 120
+  },
+  "profiler":{
+    "indicate_end_function": "indicate_end_function",
+    "possible_reboot_function": "possible_reboot_point"
+  }
+}

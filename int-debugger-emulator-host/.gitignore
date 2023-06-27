@@ -1,0 +1,12 @@
+cmake-buid-debug/
+cmake-build*/
+CMakeFiles/
+CMakeCache.txt
+CMakeLists.txt.user
+.idea/
+.vscode/
+
+MakeFile
+*.pb.cc
+*.pb.h
+*.h5

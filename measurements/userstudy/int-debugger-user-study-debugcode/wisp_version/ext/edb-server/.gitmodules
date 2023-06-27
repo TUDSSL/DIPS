@@ -1,0 +1,21 @@
+[submodule "ext/libedbserver"]
+	path = ext/libedbserver
+	url = https://github.com/CMUAbstract/libedbserver
+[submodule "ext/maker"]
+	path = ext/maker
+	url = https://github.com/CMUAbstract/maker
+[submodule "ext/libmsp"]
+	path = ext/libmsp
+	url = https://github.com/CMUAbstract/libmsp
+[submodule "ext/libmspprintf"]
+	path = ext/libmspprintf
+	url = https://github.com/CMUAbstract/libmspprintf
+[submodule "ext/libio"]
+	path = ext/libio
+	url = https://github.com/CMUAbstract/libio
+[submodule "ext/msp430-softuart"]
+	path = ext/libmspsoftuart
+	url = https://github.com/CMUAbstract/msp430-softuart
+[submodule "ext/libedb"]
+	path = ext/libedb
+	url = https://github.com/CMUAbstract/libedb

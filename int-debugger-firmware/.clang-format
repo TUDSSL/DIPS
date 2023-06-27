@@ -1,0 +1,68 @@
+---
+BasedOnStyle:  Google
+AccessModifierOffset: -2
+AlignAfterOpenBracket: Align
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+AlignEscapedNewlinesLeft: false
+AlignTrailingComments: true
+AllowAllParametersOfDeclarationOnNextLine: false
+AllowShortIfStatementsOnASingleLine: false
+AllowShortLoopsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AlwaysBreakBeforeMultilineStrings: false
+AlwaysBreakTemplateDeclarations: true
+BinPackParameters: false
+BreakBeforeBinaryOperators: false
+BreakBeforeTernaryOperators: false
+BreakConstructorInitializersBeforeComma: true
+ColumnLimit:    120
+ConstructorInitializerAllOnOneLineOrOnePerLine: true
+ConstructorInitializerIndentWidth: 2
+Cpp11BracedListStyle: false
+DerivePointerAlignment: true
+IndentCaseLabels: true
+MaxEmptyLinesToKeep: 1
+NamespaceIndentation: None
+PenaltyBreakBeforeFirstCallParameter: 19
+PenaltyBreakComment: 60
+PenaltyBreakFirstLessLess: 120
+PenaltyBreakString: 1000
+PenaltyExcessCharacter: 10000000
+PenaltyReturnTypeOnItsOwnLine: 200
+PointerAlignment: Left
+SortIncludes: false
+
+# Space Control
+SpaceAfterCStyleCast: false
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeParens: Never
+SpaceInEmptyParentheses: false
+SpacesBeforeTrailingComments: 2
+SpacesInAngles:  false
+SpacesInCStyleCastParentheses: false
+SpacesInParentheses: false
+Standard:        Auto
+
+# Indentation
+IndentWidth:     4
+TabWidth:        4
+UseTab:          Never
+ContinuationIndentWidth: 4
+
+# Configure each individual brace in BraceWrapping
+BreakBeforeBraces: Custom
+
+# Control of individual brace wrapping cases
+BraceWrapping: {
+  AfterClass: 'true'
+    AfterControlStatement: 'true'
+    AfterEnum : 'true'
+    AfterFunction : 'true'
+    AfterNamespace : 'true'
+    AfterStruct : 'true'
+    AfterUnion : 'true'
+    BeforeCatch : 'true'
+    BeforeElse : 'true'
+    IndentBraces : 'false'
+}

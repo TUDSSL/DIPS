@@ -1,0 +1,1007 @@
+Square wave:
+voltage 4100mV
+Duty cycle 20%, period 3S
+Takeover 3000mV, Debug takeover enabled
+
+settings .json:
+  "memcheck": {
+     "regions": {
+    },
+    "checkpoint_function": "checkpoint.c:33",
+    "restore_function": "restore_emulator",
+    "timeout": 300,
+    "only_checkpointing": true
+  },
+  
+python main.py emulator.elf 
+(gdb) connect
+found port: ttyACM1
+tar ext /dev/ttyACM1
+Remote debugging using /dev/ttyACM1
+mon auto_scan
+Target voltage: 3.0V
+Available Targets:
+No. Att Driver
+ 1      Ambiq Apollo 3 M4
+attach 1
+Attaching to program: /home/jasper/git/Intermittent_software/int-debugger-console/emulator.elf, Remote target
+memcpy (dst0=0x10007400 <z80_memory+5120>, src0=<optimized out>, len0=<optimized out>) at ../../../../../../newlib-4.3.0.20230120/newlib/libc/machine/arm/../../string/memcpy.c:59
+59	../../../../../../newlib-4.3.0.20230120/newlib/libc/machine/arm/../../string/memcpy.c: No such file or directory.
+^connected
+(gdb) dips_mem_check
+Starting memory automated testing procedure....
+
+Using checkpoint and restore functions from default configuration
+
+Add checkpoint and restore as arguments to change this
+
+set pagination off
+set print pretty
+mon interrupt_on_power_failure enable
+b checkpoint.c:33
+Breakpoint 1 at 0x1bd84: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c, line 33.
+Note: automatically using hardware breakpoints for read-only addresses.
+[['&"b checkpoint.c:33\\n"', '~"Breakpoint 1 at 0x1bd84: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c, line 33.\\n"', '=breakpoint-created,bkpt={number="1",type="breakpoint",disp="keep",enabled="y",addr="0x0001bd84",func="checkpoint_commit",file="/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c",fullname="/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c",line="33",thread-groups=["i1"],times="0",original-location="checkpoint.c:33"}', '~"Note: automatically using hardware breakpoints for read-only addresses.\\n"', '^done', '(gdb) '], [{'type': 'log', 'message': None, 'payload': 'b checkpoint.c:33\n', 'stream': 'stdout'}, {'type': 'console', 'message': None, 'payload': 'Breakpoint 1 at 0x1bd84: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c, line 33.\n', 'stream': 'stdout'}, {'type': 'notify', 'message': 'breakpoint-created', 'payload': {'bkpt': {'number': '1', 'type': 'breakpoint', 'disp': 'keep', 'enabled': 'y', 'addr': '0x0001bd84', 'func': 'checkpoint_commit', 'file': '/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c', 'fullname': '/home/jasper/Music/latest-testing/ENGAGE/software/libs/mpatch/checkpoint/checkpoint.c', 'line': '33', 'thread-groups': ['i1'], 'times': '0', 'original-location': 'checkpoint.c:33'}}, 'token': None, 'stream': 'stdout'}, {'type': 'console', 'message': None, 'payload': 'Note: automatically using hardware breakpoints for read-only addresses.\n', 'stream': 'stdout'}, {'type': 'result', 'message': 'done', 'payload': None, 'token': None, 'stream': 'stdout'}]]
+b restore_emulator
+Breakpoint 2 at 0x1bd0a: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/emulator/checkpoint_emulator.h, line 7.
+[['&"b restore_emulator\\n"', '~"Breakpoint 2 at 0x1bd0a: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/emulator/checkpoint_emulator.h, line 7.\\n"', '=breakpoint-created,bkpt={number="2",type="breakpoint",disp="keep",enabled="y",addr="0x0001bd0a",func="restore_emulator",file="/home/jasper/Music/latest-testing/ENGAGE/software/libs/emulator/checkpoint_emulator.h",fullname="/home/jasper/Music/latest-testing/ENGAGE/software/libs/emulator/checkpoint_emulator.h",line="7",thread-groups=["i1"],times="0",original-location="restore_emulator"}', '^done', '(gdb) '], [{'type': 'log', 'message': None, 'payload': 'b restore_emulator\n', 'stream': 'stdout'}, {'type': 'console', 'message': None, 'payload': 'Breakpoint 2 at 0x1bd0a: file /home/jasper/Music/latest-testing/ENGAGE/software/libs/emulator/checkpoint_emulator.h, line 7.\n', 'stream': 'stdout'}, {'type': 'notify', 'message': 'breakpoint-created', 'payload': {'bkpt': {'number': '2', 'type': 'breakpoint', 'disp': 'keep', 'enabled': 'y', 'addr': '0x0001bd0a', 'func': 'restore_emulator', 'file': '/home/jasper/Music/latest-testing/ENGAGE/software/libs/emulator/checkpoint_emulator.h', 'fullname': '/home/jasper/Music/latest-testing/ENGAGE/software/libs/emulator/checkpoint_emulator.h', 'line': '7', 'thread-groups': ['i1'], 'times': '0', 'original-location': 'restore_emulator'}}, 'token': None, 'stream': 'stdout'}, {'type': 'result', 'message': 'done', 'payload': None, 'token': None, 'stream': 'stdout'}]]
+~"Test memory check initialized"
+~"starting script now"
+2023-05-15 18:04:57.198328 restore triggered 1
+
+2023-05-15 18:05:01.118428 checkpoint triggered 1
+
+2023-05-15 18:05:03.167483 restarted
+
+2023-05-15 18:05:03.747958 restore triggered 2
+
+2023-05-15 18:05:05.208473 checkpoint triggered 2
+
+2023-05-15 18:05:07.297541 restarted
+
+2023-05-15 18:05:07.878173 restore triggered 3
+
+2023-05-15 18:05:09.338396 checkpoint triggered 3
+
+2023-05-15 18:05:11.427382 restarted
+
+2023-05-15 18:05:12.016985 restore triggered 4
+
+2023-05-15 18:05:13.468100 checkpoint triggered 4
+
+2023-05-15 18:05:15.557330 restarted
+
+2023-05-15 18:05:16.137524 restore triggered 5
+
+2023-05-15 18:05:17.606910 checkpoint triggered 5
+
+2023-05-15 18:05:19.657243 restarted
+
+2023-05-15 18:05:20.237297 restore triggered 6
+
+2023-05-15 18:05:23.317273 restarted
+
+2023-05-15 18:05:23.899061 restore triggered 7
+
+2023-05-15 18:05:25.408718 checkpoint triggered 6
+
+2023-05-15 18:05:27.497216 restarted
+
+2023-05-15 18:05:28.077404 restore triggered 8
+
+2023-05-15 18:05:29.538404 checkpoint triggered 7
+
+2023-05-15 18:05:31.627045 restarted
+
+2023-05-15 18:05:32.208156 restore triggered 9
+
+2023-05-15 18:05:33.668063 checkpoint triggered 8
+
+2023-05-15 18:05:35.757093 restarted
+
+2023-05-15 18:05:36.337426 restore triggered 10
+
+2023-05-15 18:05:37.797790 checkpoint triggered 9
+
+2023-05-15 18:05:39.886853 restarted
+
+2023-05-15 18:05:40.468397 restore triggered 11
+
+2023-05-15 18:05:41.928348 checkpoint triggered 10
+
+2023-05-15 18:05:44.016817 restarted
+
+2023-05-15 18:05:44.597487 restore triggered 12
+
+2023-05-15 18:05:46.058153 checkpoint triggered 11
+
+2023-05-15 18:05:48.107212 restarted
+
+2023-05-15 18:05:48.687545 restore triggered 13
+
+2023-05-15 18:05:50.148464 checkpoint triggered 12
+
+2023-05-15 18:05:52.227097 restarted
+
+2023-05-15 18:05:52.808526 restore triggered 14
+
+2023-05-15 18:05:54.268208 checkpoint triggered 13
+
+2023-05-15 18:05:56.346965 restarted
+
+2023-05-15 18:05:56.927347 restore triggered 15
+
+2023-05-15 18:06:00.016616 restarted
+
+2023-05-15 18:06:00.598963 restore triggered 16
+
+2023-05-15 18:06:03.767064 restarted
+
+2023-05-15 18:06:04.348374 restore triggered 17
+
+2023-05-15 18:06:05.757746 checkpoint triggered 14
+
+2023-05-15 18:06:07.867178 restarted
+
+2023-05-15 18:06:08.447539 restore triggered 18
+
+2023-05-15 18:06:09.907548 checkpoint triggered 15
+
+2023-05-15 18:06:11.996688 restarted
+
+2023-05-15 18:06:12.577689 restore triggered 19
+
+2023-05-15 18:06:14.038288 checkpoint triggered 16
+
+2023-05-15 18:06:16.126465 restarted
+
+2023-05-15 18:06:16.707903 restore triggered 20
+
+2023-05-15 18:06:18.176111 checkpoint triggered 17
+
+2023-05-15 18:06:20.226425 restarted
+
+2023-05-15 18:06:20.806444 restore triggered 21
+
+2023-05-15 18:06:23.896886 restarted
+
+2023-05-15 18:06:24.477279 restore triggered 22
+
+2023-05-15 18:06:27.566408 restarted
+
+2023-05-15 18:06:28.147438 restore triggered 23
+
+2023-05-15 18:06:31.316242 restarted
+
+2023-05-15 18:06:31.897154 restore triggered 24
+
+2023-05-15 18:06:33.298652 checkpoint triggered 18
+
+2023-05-15 18:06:35.416169 restarted
+
+2023-05-15 18:06:35.996985 restore triggered 25
+
+2023-05-15 18:06:39.106479 restarted
+
+2023-05-15 18:06:39.686688 restore triggered 26
+
+2023-05-15 18:06:41.137158 checkpoint triggered 19
+
+2023-05-15 18:06:43.226137 restarted
+
+2023-05-15 18:06:43.806673 restore triggered 27
+
+2023-05-15 18:06:45.209574 checkpoint triggered 20
+
+2023-05-15 18:06:47.326114 restarted
+
+2023-05-15 18:06:47.906541 restore triggered 28
+
+2023-05-15 18:06:51.026082 restarted
+
+2023-05-15 18:06:51.606589 restore triggered 29
+
+2023-05-15 18:06:53.016273 checkpoint triggered 21
+
+2023-05-15 18:06:55.116130 restarted
+
+2023-05-15 18:06:55.696552 restore triggered 30
+
+2023-05-15 18:06:57.156663 checkpoint triggered 22
+
+2023-05-15 18:06:59.246561 restarted
+
+2023-05-15 18:06:59.826726 restore triggered 31
+
+2023-05-15 18:07:01.315718 checkpoint triggered 23
+
+2023-05-15 18:07:03.375964 restarted
+
+2023-05-15 18:07:03.957041 restore triggered 32
+
+2023-05-15 18:07:05.416400 checkpoint triggered 24
+
+2023-05-15 18:07:07.506356 restarted
+
+2023-05-15 18:07:08.086369 restore triggered 33
+
+2023-05-15 18:07:09.547494 checkpoint triggered 25
+
+2023-05-15 18:07:11.635699 restarted
+
+2023-05-15 18:07:12.215921 restore triggered 34
+
+2023-05-15 18:07:13.676779 checkpoint triggered 26
+
+2023-05-15 18:07:15.735837 restarted
+
+2023-05-15 18:07:16.317155 restore triggered 35
+
+2023-05-15 18:07:19.475722 restarted
+
+2023-05-15 18:07:20.056639 restore triggered 36
+
+2023-05-15 18:07:21.466400 checkpoint triggered 27
+
+2023-05-15 18:07:23.576031 restarted
+
+2023-05-15 18:07:24.156039 restore triggered 37
+
+2023-05-15 18:07:27.275634 restarted
+
+2023-05-15 18:07:27.856483 restore triggered 38
+
+2023-05-15 18:07:29.266419 checkpoint triggered 28
+
+2023-05-15 18:07:31.365595 restarted
+
+2023-05-15 18:07:31.946928 restore triggered 39
+
+2023-05-15 18:07:33.406506 checkpoint triggered 29
+
+2023-05-15 18:07:35.495605 restarted
+
+2023-05-15 18:07:36.076967 restore triggered 40
+
+2023-05-15 18:07:37.535739 checkpoint triggered 30
+
+2023-05-15 18:07:39.625609 restarted
+
+2023-05-15 18:07:40.205998 restore triggered 41
+
+2023-05-15 18:07:41.665999 checkpoint triggered 31
+
+2023-05-15 18:07:43.765303 restarted
+
+2023-05-15 18:07:44.346718 restore triggered 42
+
+2023-05-15 18:07:45.755649 checkpoint triggered 32
+
+2023-05-15 18:07:47.855251 restarted
+
+2023-05-15 18:07:48.445582 restore triggered 43
+
+2023-05-15 18:07:49.906503 checkpoint triggered 33
+
+2023-05-15 18:07:51.995528 restarted
+
+2023-05-15 18:07:52.586705 restore triggered 44
+
+2023-05-15 18:07:54.006151 checkpoint triggered 34
+
+2023-05-15 18:07:56.095046 restarted
+
+2023-05-15 18:07:56.686963 restore triggered 45
+
+2023-05-15 18:07:58.145680 checkpoint triggered 35
+
+2023-05-15 18:08:00.235126 restarted
+
+2023-05-15 18:08:00.825764 restore triggered 46
+
+2023-05-15 18:08:02.286496 checkpoint triggered 36
+
+2023-05-15 18:08:04.375476 restarted
+
+2023-05-15 18:08:04.965441 restore triggered 47
+
+2023-05-15 18:08:06.376851 checkpoint triggered 37
+
+2023-05-15 18:08:08.465267 restarted
+
+2023-05-15 18:08:09.055961 restore triggered 48
+
+2023-05-15 18:08:10.515615 checkpoint triggered 38
+
+2023-05-15 18:08:12.604854 restarted
+
+2023-05-15 18:08:13.185490 restore triggered 49
+
+2023-05-15 18:08:14.646144 checkpoint triggered 39
+
+2023-05-15 18:08:16.735019 restarted
+
+2023-05-15 18:08:17.315935 restore triggered 50
+
+2023-05-15 18:08:20.375078 restarted
+
+2023-05-15 18:08:20.955360 restore triggered 51
+
+2023-05-15 18:08:22.415196 checkpoint triggered 40
+
+2023-05-15 18:08:24.504878 restarted
+
+2023-05-15 18:08:25.096134 restore triggered 52
+
+2023-05-15 18:08:26.555107 checkpoint triggered 41
+
+2023-05-15 18:08:28.644787 restarted
+
+2023-05-15 18:08:29.244891 restore triggered 53
+
+2023-05-15 18:08:32.284680 restarted
+
+2023-05-15 18:08:32.876043 restore triggered 54
+
+2023-05-15 18:08:36.035045 restarted
+
+2023-05-15 18:08:36.625629 restore triggered 55
+
+2023-05-15 18:08:38.085947 checkpoint triggered 42
+
+2023-05-15 18:08:40.134631 restarted
+
+2023-05-15 18:08:40.715859 restore triggered 56
+
+2023-05-15 18:08:42.175822 checkpoint triggered 43
+
+2023-05-15 18:08:44.264481 restarted
+
+2023-05-15 18:08:44.845832 restore triggered 57
+
+2023-05-15 18:08:47.954592 restarted
+
+2023-05-15 18:08:48.546278 restore triggered 58
+
+2023-05-15 18:08:49.956159 checkpoint triggered 44
+
+2023-05-15 18:08:52.054434 restarted
+
+2023-05-15 18:08:52.635630 restore triggered 59
+
+2023-05-15 18:08:54.095366 checkpoint triggered 45
+
+2023-05-15 18:08:56.184683 restarted
+
+2023-05-15 18:08:56.775295 restore triggered 60
+
+2023-05-15 18:08:58.235226 checkpoint triggered 46
+
+2023-05-15 18:09:00.325009 restarted
+
+2023-05-15 18:09:00.915212 restore triggered 61
+
+2023-05-15 18:09:03.994282 restarted
+
+2023-05-15 18:09:04.594144 restore triggered 62
+
+2023-05-15 18:09:06.006043 checkpoint triggered 47
+
+2023-05-15 18:09:08.094561 restarted
+
+2023-05-15 18:09:08.686142 restore triggered 63
+
+2023-05-15 18:09:10.145523 checkpoint triggered 48
+
+2023-05-15 18:09:12.234404 restarted
+
+2023-05-15 18:09:12.826108 restore triggered 64
+
+2023-05-15 18:09:14.235448 checkpoint triggered 49
+
+2023-05-15 18:09:16.364100 restarted
+
+2023-05-15 18:09:16.955240 restore triggered 65
+
+2023-05-15 18:09:20.024492 restarted
+
+2023-05-15 18:09:20.615371 restore triggered 66
+
+2023-05-15 18:09:22.026089 checkpoint triggered 50
+
+2023-05-15 18:09:24.124363 restarted
+
+2023-05-15 18:09:24.715355 restore triggered 67
+
+2023-05-15 18:09:26.174086 checkpoint triggered 51
+
+2023-05-15 18:09:28.224181 restarted
+
+2023-05-15 18:09:28.815367 restore triggered 68
+
+2023-05-15 18:09:31.944377 restarted
+
+2023-05-15 18:09:32.534415 restore triggered 69
+
+2023-05-15 18:09:33.945242 checkpoint triggered 52
+
+2023-05-15 18:09:36.074539 restarted
+
+2023-05-15 18:09:36.664681 restore triggered 70
+
+2023-05-15 18:09:39.734010 restarted
+
+2023-05-15 18:09:40.325283 restore triggered 71
+
+2023-05-15 18:09:41.734321 checkpoint triggered 53
+
+2023-05-15 18:09:43.833866 restarted
+
+2023-05-15 18:09:44.433866 restore triggered 72
+
+2023-05-15 18:09:45.894838 checkpoint triggered 54
+
+2023-05-15 18:09:47.983787 restarted
+
+2023-05-15 18:09:48.575289 restore triggered 73
+
+2023-05-15 18:09:49.985880 checkpoint triggered 55
+
+2023-05-15 18:09:52.123679 restarted
+
+2023-05-15 18:09:52.714739 restore triggered 74
+
+2023-05-15 18:09:54.125036 checkpoint triggered 56
+
+2023-05-15 18:09:56.223978 restarted
+
+2023-05-15 18:09:56.824140 restore triggered 75
+
+2023-05-15 18:09:58.234091 checkpoint triggered 57
+
+2023-05-15 18:10:00.324160 restarted
+
+2023-05-15 18:10:00.924911 restore triggered 76
+
+2023-05-15 18:10:02.385800 checkpoint triggered 58
+
+2023-05-15 18:10:04.473555 restarted
+
+2023-05-15 18:10:05.083820 restore triggered 77
+
+2023-05-15 18:10:06.504500 checkpoint triggered 59
+
+2023-05-15 18:10:08.573934 restarted
+
+2023-05-15 18:10:09.174028 restore triggered 78
+
+2023-05-15 18:10:10.634339 checkpoint triggered 60
+
+2023-05-15 18:10:12.693689 restarted
+
+2023-05-15 18:10:13.294586 restore triggered 79
+
+2023-05-15 18:10:14.773338 checkpoint triggered 61
+
+2023-05-15 18:10:16.873714 restarted
+
+2023-05-15 18:10:17.464143 restore triggered 80
+
+2023-05-15 18:10:18.925233 checkpoint triggered 62
+
+2023-05-15 18:10:21.023615 restarted
+
+2023-05-15 18:10:21.624158 restore triggered 81
+
+2023-05-15 18:10:23.034699 checkpoint triggered 63
+
+2023-05-15 18:10:25.123450 restarted
+
+2023-05-15 18:10:25.724336 restore triggered 82
+
+2023-05-15 18:10:27.184952 checkpoint triggered 64
+
+2023-05-15 18:10:29.273401 restarted
+
+2023-05-15 18:10:29.874153 restore triggered 83
+
+2023-05-15 18:10:31.284757 checkpoint triggered 65
+
+2023-05-15 18:10:33.373729 restarted
+
+2023-05-15 18:10:33.974566 restore triggered 84
+
+2023-05-15 18:10:35.384831 checkpoint triggered 66
+
+2023-05-15 18:10:37.523243 restarted
+
+2023-05-15 18:10:38.123509 restore triggered 85
+
+2023-05-15 18:10:41.183457 restarted
+
+2023-05-15 18:10:41.784657 restore triggered 86
+
+2023-05-15 18:10:43.194637 checkpoint triggered 67
+
+2023-05-15 18:10:45.243502 restarted
+
+2023-05-15 18:10:45.843220 restore triggered 87
+
+2023-05-15 18:10:48.983126 restarted
+
+2023-05-15 18:10:49.583594 restore triggered 88
+
+2023-05-15 18:10:52.653082 restarted
+
+2023-05-15 18:10:53.254444 restore triggered 89
+
+2023-05-15 18:10:56.322940 restarted
+
+2023-05-15 18:10:56.923644 restore triggered 90
+
+2023-05-15 18:10:59.993111 restarted
+
+2023-05-15 18:11:00.594940 restore triggered 91
+
+2023-05-15 18:11:03.673033 restarted
+
+2023-05-15 18:11:04.273877 restore triggered 92
+
+2023-05-15 18:11:05.684531 checkpoint triggered 68
+
+2023-05-15 18:11:07.772816 restarted
+
+2023-05-15 18:11:08.373873 restore triggered 93
+
+2023-05-15 18:11:09.783454 checkpoint triggered 69
+
+2023-05-15 18:11:11.892781 restarted
+
+2023-05-15 18:11:12.493555 restore triggered 94
+
+2023-05-15 18:11:13.904079 checkpoint triggered 70
+
+2023-05-15 18:11:16.012711 restarted
+
+2023-05-15 18:11:16.623439 restore triggered 95
+
+2023-05-15 18:11:18.042546 checkpoint triggered 71
+
+2023-05-15 18:11:20.172836 restarted
+
+2023-05-15 18:11:20.783360 restore triggered 96
+
+2023-05-15 18:11:22.193859 checkpoint triggered 72
+
+2023-05-15 18:11:24.282714 restarted
+
+2023-05-15 18:11:24.884148 restore triggered 97
+
+2023-05-15 18:11:26.293308 checkpoint triggered 73
+
+2023-05-15 18:11:28.422654 restarted
+
+2023-05-15 18:11:29.032502 restore triggered 98
+
+2023-05-15 18:11:30.443189 checkpoint triggered 74
+
+2023-05-15 18:11:32.532680 restarted
+
+2023-05-15 18:11:33.133867 restore triggered 99
+
+2023-05-15 18:11:34.543535 checkpoint triggered 75
+
+2023-05-15 18:11:36.633046 restarted
+
+2023-05-15 18:11:37.233932 restore triggered 100
+
+2023-05-15 18:11:38.693425 checkpoint triggered 76
+
+2023-05-15 18:11:40.782530 restarted
+
+2023-05-15 18:11:41.384390 restore triggered 101
+
+2023-05-15 18:11:42.792962 checkpoint triggered 77
+
+2023-05-15 18:11:44.882616 restarted
+
+2023-05-15 18:11:45.492536 restore triggered 102
+
+2023-05-15 18:11:46.953027 checkpoint triggered 78
+
+2023-05-15 18:11:49.002693 restarted
+
+2023-05-15 18:11:49.613488 restore triggered 103
+
+2023-05-15 18:11:51.023557 checkpoint triggered 79
+
+2023-05-15 18:11:53.162271 restarted
+
+2023-05-15 18:11:53.772894 restore triggered 104
+
+2023-05-15 18:11:56.832290 restarted
+
+2023-05-15 18:11:57.443569 restore triggered 105
+
+2023-05-15 18:11:58.852767 checkpoint triggered 80
+
+2023-05-15 18:12:00.942322 restarted
+
+2023-05-15 18:12:01.543545 restore triggered 106
+
+2023-05-15 18:12:02.953338 checkpoint triggered 81
+
+2023-05-15 18:12:05.082328 restarted
+
+2023-05-15 18:12:05.682807 restore triggered 107
+
+2023-05-15 18:12:07.093531 checkpoint triggered 82
+
+2023-05-15 18:12:09.182300 restarted
+
+2023-05-15 18:12:09.783448 restore triggered 108
+
+2023-05-15 18:12:11.192574 checkpoint triggered 83
+
+2023-05-15 18:12:13.302491 restarted
+
+2023-05-15 18:12:13.912862 restore triggered 109
+
+2023-05-15 18:12:17.002028 restarted
+
+2023-05-15 18:12:17.613128 restore triggered 110
+
+2023-05-15 18:12:19.023283 checkpoint triggered 84
+
+2023-05-15 18:12:21.112132 restarted
+
+2023-05-15 18:12:21.722967 restore triggered 111
+
+2023-05-15 18:12:24.761819 restarted
+
+2023-05-15 18:12:25.372989 restore triggered 112
+
+2023-05-15 18:12:28.431932 restarted
+
+2023-05-15 18:12:29.043183 restore triggered 113
+
+2023-05-15 18:12:30.512448 checkpoint triggered 85
+
+2023-05-15 18:12:32.561849 restarted
+
+2023-05-15 18:12:33.172118 restore triggered 114
+
+2023-05-15 18:12:34.622685 checkpoint triggered 86
+
+2023-05-15 18:12:36.711793 restarted
+
+2023-05-15 18:12:37.313199 restore triggered 115
+
+2023-05-15 18:12:40.351920 restarted
+
+2023-05-15 18:12:40.952827 restore triggered 116
+
+2023-05-15 18:12:44.101658 restarted
+
+2023-05-15 18:12:44.703125 restore triggered 117
+
+2023-05-15 18:12:46.104579 checkpoint triggered 87
+
+2023-05-15 18:12:48.201964 restarted
+
+2023-05-15 18:12:48.803028 restore triggered 118
+
+2023-05-15 18:12:50.262316 checkpoint triggered 88
+
+2023-05-15 18:12:52.351718 restarted
+
+2023-05-15 18:12:52.952123 restore triggered 119
+
+2023-05-15 18:12:54.355382 checkpoint triggered 89
+
+2023-05-15 18:12:56.451695 restarted
+
+2023-05-15 18:12:57.053198 restore triggered 120
+
+2023-05-15 18:12:58.512070 checkpoint triggered 90
+
+2023-05-15 18:13:00.611679 restarted
+
+2023-05-15 18:13:01.221224 restore triggered 121
+
+2023-05-15 18:13:02.625317 checkpoint triggered 91
+
+2023-05-15 18:13:04.701624 restarted
+
+2023-05-15 18:13:05.302230 restore triggered 122
+
+2023-05-15 18:13:06.762463 checkpoint triggered 92
+
+2023-05-15 18:13:08.851964 restarted
+
+2023-05-15 18:13:09.451752 restore triggered 123
+
+2023-05-15 18:13:10.854048 checkpoint triggered 93
+
+2023-05-15 18:13:12.951405 restarted
+
+2023-05-15 18:13:13.552032 restore triggered 124
+
+2023-05-15 18:13:15.012812 checkpoint triggered 94
+
+2023-05-15 18:13:17.101460 restarted
+
+2023-05-15 18:13:17.702269 restore triggered 125
+
+2023-05-15 18:13:20.781639 restarted
+
+2023-05-15 18:13:21.382694 restore triggered 126
+
+2023-05-15 18:13:24.501337 restarted
+
+2023-05-15 18:13:25.101851 restore triggered 127
+
+2023-05-15 18:13:26.504967 checkpoint triggered 95
+
+2023-05-15 18:13:28.631390 restarted
+
+2023-05-15 18:13:29.231443 restore triggered 128
+
+2023-05-15 18:13:30.641272 checkpoint triggered 96
+
+2023-05-15 18:13:32.731390 restarted
+
+2023-05-15 18:13:33.332657 restore triggered 129
+
+2023-05-15 18:13:34.742494 checkpoint triggered 97
+
+2023-05-15 18:13:36.881234 restarted
+
+2023-05-15 18:13:37.481401 restore triggered 130
+
+2023-05-15 18:13:38.884094 checkpoint triggered 98
+
+2023-05-15 18:13:40.971193 restarted
+
+2023-05-15 18:13:41.571616 restore triggered 131
+
+2023-05-15 18:13:43.032185 checkpoint triggered 99
+
+2023-05-15 18:13:45.121087 restarted
+
+2023-05-15 18:13:45.722450 restore triggered 132
+
+2023-05-15 18:13:46.923524 checkpoint triggered 100
+
+2023-05-15 18:13:48.991107 restarted
+
+2023-05-15 18:13:49.591393 restore triggered 133
+
+2023-05-15 18:13:51.041761 checkpoint triggered 101
+
+2023-05-15 18:13:53.130947 restarted
+
+2023-05-15 18:13:53.732310 restore triggered 134
+
+2023-05-15 18:13:55.191397 checkpoint triggered 102
+
+2023-05-15 18:13:57.240999 restarted
+
+2023-05-15 18:13:57.841766 restore triggered 135
+
+2023-05-15 18:13:59.302351 checkpoint triggered 103
+
+2023-05-15 18:14:01.380740 restarted
+
+2023-05-15 18:14:01.981355 restore triggered 136
+
+2023-05-15 18:14:05.130734 restarted
+
+2023-05-15 18:14:05.721673 restore triggered 137
+
+2023-05-15 18:14:07.124072 checkpoint triggered 104
+
+2023-05-15 18:14:09.251337 restarted
+
+2023-05-15 18:14:12.454347 restarted
+
+2023-05-15 18:14:15.657046 restarted
+
+2023-05-15 18:14:18.860124 restarted
+
+2023-05-15 18:14:22.060569 restarted
+
+2023-05-15 18:14:25.263399 restarted
+
+2023-05-15 18:14:28.466421 restarted
+
+2023-05-15 18:14:31.669661 restarted
+
+2023-05-15 18:14:34.872124 restarted
+
+2023-05-15 18:14:38.074398 restarted
+
+2023-05-15 18:14:41.277422 restarted
+
+2023-05-15 18:14:44.480411 restarted
+
+2023-05-15 18:14:47.683767 restarted
+
+2023-05-15 18:14:50.886686 restarted
+
+2023-05-15 18:14:54.088823 restarted
+
+2023-05-15 18:14:57.292076 restarted
+
+2023-05-15 18:15:00.494294 restarted
+
+2023-05-15 18:15:03.696834 restarted
+
+2023-05-15 18:15:06.900133 restarted
+
+2023-05-15 18:15:10.103145 restarted
+
+2023-05-15 18:15:13.305323 restarted
+
+2023-05-15 18:15:16.507392 restarted
+
+2023-05-15 18:15:19.710464 restarted
+
+2023-05-15 18:15:22.913393 restarted
+
+2023-05-15 18:15:26.116278 restarted
+
+2023-05-15 18:15:29.318968 restarted
+
+2023-05-15 18:15:32.522026 restarted
+
+2023-05-15 18:15:35.724328 restarted
+
+2023-05-15 18:15:38.927026 restarted
+
+2023-05-15 18:15:42.129864 restarted
+
+2023-05-15 18:15:45.332126 restarted
+
+2023-05-15 18:15:48.535479 restarted
+
+2023-05-15 18:15:51.737638 restarted
+
+2023-05-15 18:15:54.939910 restarted
+
+2023-05-15 18:15:58.143259 restarted
+
+2023-05-15 18:16:01.345523 restarted
+
+2023-05-15 18:16:04.547690 restarted
+
+2023-05-15 18:16:07.750977 restarted
+
+2023-05-15 18:16:10.954056 restarted
+
+2023-05-15 18:16:14.157646 restarted
+
+2023-05-15 18:16:17.360207 restarted
+
+2023-05-15 18:16:20.563542 restarted
+
+2023-05-15 18:16:23.766887 restarted
+
+2023-05-15 18:16:26.969413 restarted
+
+2023-05-15 18:16:30.172270 restarted
+
+2023-05-15 18:16:33.375354 restarted
+
+2023-05-15 18:16:36.577713 restarted
+
+2023-05-15 18:16:39.781071 restarted
+
+2023-05-15 18:16:42.984301 restarted
+
+2023-05-15 18:16:46.187012 restarted
+
+2023-05-15 18:16:49.389971 restarted
+
+2023-05-15 18:16:52.592423 restarted
+
+2023-05-15 18:16:55.788793 restarted
+
+2023-05-15 18:16:58.991158 restarted
+
+2023-05-15 18:17:02.189082 restarted
+
+2023-05-15 18:17:05.391935 restarted
+
+2023-05-15 18:17:08.594029 restarted
+
+2023-05-15 18:17:11.796905 restarted
+
+2023-05-15 18:17:14.998564 restarted
+
+2023-05-15 18:17:18.200957 restarted
+
+2023-05-15 18:17:21.404273 restarted
+
+2023-05-15 18:17:24.607192 restarted
+
+2023-05-15 18:17:27.810355 restarted
+
+2023-05-15 18:17:31.013498 restarted
+
+2023-05-15 18:17:34.216485 restarted
+
+2023-05-15 18:17:37.418340 restarted
+
+2023-05-15 18:17:40.621031 restarted
+
+2023-05-15 18:17:43.823209 restarted
+
+2023-05-15 18:17:47.025435 restarted
+
+2023-05-15 18:17:50.227635 restarted
+
+2023-05-15 18:17:53.430573 restarted
+
+2023-05-15 18:17:56.633766 restarted
+
+2023-05-15 18:17:59.836382 restarted
+
+2023-05-15 18:18:03.038335 restarted
+
+2023-05-15 18:18:06.241328 restarted
+
+2023-05-15 18:18:09.444285 restarted
+
+2023-05-15 18:18:12.646395 restarted
+
+2023-05-15 18:18:15.848692 restarted
+
+2023-05-15 18:18:19.050960 restarted
+
+2023-05-15 18:18:22.254024 restarted
+
+2023-05-15 18:18:25.456750 restarted
+
+2023-05-15 18:18:28.658756 restarted
+
+2023-05-15 18:18:31.860995 restarted
+
+2023-05-15 18:18:35.063234 restarted
+
+2023-05-15 18:18:38.265403 restarted
+
+2023-05-15 18:18:41.467682 restarted
+
+2023-05-15 18:18:44.670862 restarted
+
+2023-05-15 18:18:47.872975 restarted
+
+2023-05-15 18:18:51.075242 restarted
+
+2023-05-15 18:18:54.277609 restarted
+
+2023-05-15 18:18:57.480690 restarted
+
+2023-05-15 18:19:00.682942 restarted
+
+2023-05-15 18:19:03.885438 restarted
+
+2023-05-15 18:19:07.086843 restarted
+
+[['^done', '(gdb) '], [{'type': 'result', 'message': 'done', 'payload': None, 'token': None, 'stream': 'stdout'}]]
+2023-05-15 18:19:07.287379 Errors found in application, no checkpoint detected in the last 300 seconds.
+
+d 1
+Cannot execute this command while the target is running.
+Use the "interrupt" command to stop the target
+and then try again.
+d 2
+Cannot execute this command while the target is running.
+Use the "interrupt" command to stop the target
+and then try again.
+mon interrupt_on_power_failure disable
+Cannot execute this command while the target is running.
+Use the "interrupt" command to stop the target
+and then try again.
+
